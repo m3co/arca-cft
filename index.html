@@ -16,8 +16,8 @@
     </a>
     <div class="header__wrp-info">
         <div class="header__wrp-titles">
-            <h1>Accounting system</h1>
-            <h2>Manage your contract details</h2>
+            <h1>CFT Admin</h1>
+            <h2>Manage the contract-template details</h2>
         </div>
         <div class="header__wrp-options">
             <div class="btn-primary js-modal" data-modal="#modal_add">
@@ -27,9 +27,9 @@
                     <path d="M3.33325 8H12.6666" stroke="white" stroke-width="2" stroke-linecap="round"
                           stroke-linejoin="round"/>
                 </svg>
-                Add new contract
+                Add
             </div>
-            <div class="btn-secondary disabled">
+            <!-- <div class="btn-secondary disabled">
                 <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M14.5 10V12.6667C14.5 13.0203 14.3595 13.3594 14.1095 13.6095C13.8594 13.8595 13.5203 14 13.1667 14H3.83333C3.47971 14 3.14057 13.8595 2.89052 13.6095C2.64048 13.3594 2.5 13.0203 2.5 12.6667V10"
                           stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -38,7 +38,7 @@
                     <path d="M8.5 10V2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 Download PDF Report
-            </div>
+            </div> -->
         </div>
     </div>
 </header>
@@ -108,7 +108,7 @@
 <!--                row-->
                 <div class="table__row">
                     <div class="table__row-part" data-name="Contract1">
-                        <div class="name">Text</div>
+                        <div class="name">Contract Type</div>
                         <span>
                         <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -120,7 +120,7 @@
                         <div class="select_wrapper">
                             <div data-select="1" tabindex="0" class="select-header">
                                 <div class="select-header__text_wrapper">
-                                    <div class="select__text">Placeholder</div>
+                                    <div class="select__text">Report Type</div>
                                 </div>
                                 <svg class="select__icon" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -129,10 +129,10 @@
                             <div data-droplist="1" class="droplist">
                                 <div class="select-dropdown__inner">
                                     <div tabindex="0" data-dropitem="1" class="item">
-                                        Placeholder 1
+                                        Report Type 1
                                     </div>
                                     <div tabindex="0" data-dropitem="1" class="item">
-                                        Placeholder 2
+                                        Report Type 2
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +143,7 @@
                         <div class="select_wrapper">
                             <div data-select="2" tabindex="0" class="select-header">
                                 <div class="select-header__text_wrapper">
-                                    <div class="select__text">Placeholder</div>
+                                    <div class="select__text">BuiltIn-Category</div>
                                 </div>
                                 <svg class="select__icon" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -152,10 +152,10 @@
                             <div data-droplist="2" class="droplist">
                                 <div class="select-dropdown__inner">
                                     <div tabindex="0" data-dropitem="2" class="item">
-                                        Placeholder 1
+                                        BIC 1
                                     </div>
                                     <div tabindex="0" data-dropitem="2" class="item">
-                                        Placeholder 2
+                                        BIC 2
                                     </div>
                                 </div>
                             </div>
@@ -165,7 +165,7 @@
                         <div class="select_wrapper">
                             <div data-select="3" tabindex="0" class="select-header error">
                                 <div class="select-header__text_wrapper">
-                                    <div class="select__text">Placeholder</div>
+                                    <div class="select__text">Key</div>
                                 </div>
                                 <svg class="select__icon" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -174,10 +174,10 @@
                             <div data-droplist="3" class="droplist">
                                 <div class="select-dropdown__inner">
                                     <div tabindex="0" data-dropitem="3" class="item">
-                                        Placeholder 1
+                                        Key 1
                                     </div>
                                     <div tabindex="0" data-dropitem="3" class="item">
-                                        Placeholder 2
+                                        Key 2
                                     </div>
                                 </div>
                             </div>
@@ -187,7 +187,7 @@
                         <div class="select_wrapper">
                             <div data-select="4" tabindex="0" class="select-header">
                                 <div class="select-header__text_wrapper">
-                                    <div class="select__text">Placeholder</div>
+                                    <div class="select__text">Constraint</div>
                                 </div>
                                 <svg class="select__icon" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -196,10 +196,10 @@
                             <div data-droplist="4" class="droplist">
                                 <div class="select-dropdown__inner">
                                     <div tabindex="0" data-dropitem="4" class="item">
-                                        Placeholder 1
+                                        Constraint 1
                                     </div>
                                     <div tabindex="0" data-dropitem="4" class="item">
-                                        Placeholder 2
+                                        Constraint 2
                                     </div>
                                 </div>
                             </div>
@@ -209,7 +209,7 @@
                         <div class="select_wrapper">
                             <div data-select="5" tabindex="0" class="select-header">
                                 <div class="select-header__text_wrapper">
-                                    <div class="select__text">Placeholder</div>
+                                    <div class="select__text">Quantity</div>
                                 </div>
                                 <svg class="select__icon" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -218,10 +218,10 @@
                             <div data-droplist="5" class="droplist">
                                 <div class="select-dropdown__inner">
                                     <div tabindex="0" data-dropitem="5" class="item">
-                                        Placeholder 1
+                                        Quantity 1
                                     </div>
                                     <div tabindex="0" data-dropitem="5" class="item">
-                                        Placeholder 2
+                                        Quantity 2
                                     </div>
                                 </div>
                             </div>
@@ -238,13 +238,13 @@
 <!--                hidden row wth id-->
                 <div id="Contract1" class="table__hidden-row">
                     <div class="info-box">
-                        <div class="name">Name contract filters:</div>
+                        <div class="name">Filters:</div>
                          <button type="button" class="btn-primary js-modal" data-modal="#modal_add">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8 3.33334V12.6667" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M3.33325 8H12.6666" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            Add new filter
+                            Add
                         </button>
                     </div>
 
@@ -254,7 +254,7 @@
                                 <div class="select_wrapper">
                                     <div data-select="1" tabindex="0" class="select-header error">
                                         <div class="select-header__text_wrapper">
-                                            <div class="select__text">Placeholder</div>
+                                            <div class="select__text">Command</div>
                                         </div>
                                         <svg class="select__icon" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -263,10 +263,10 @@
                                     <div data-droplist="1" class="droplist">
                                         <div class="select-dropdown__inner">
                                             <div tabindex="0" data-dropitem="1" class="item">
-                                                Placeholder 1
+                                                Command 1
                                             </div>
                                             <div tabindex="0" data-dropitem="1" class="item">
-                                                Placeholder 2
+                                                Command 2
                                             </div>
                                         </div>
                                     </div>
@@ -283,7 +283,7 @@
                                 <div class="select_wrapper">
                                     <div data-select="1" tabindex="0" class="select-header">
                                         <div class="select-header__text_wrapper">
-                                            <div class="select__text">Placeholder</div>
+                                            <div class="select__text">Field</div>
                                         </div>
                                         <svg class="select__icon" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -292,10 +292,10 @@
                                     <div data-droplist="1" class="droplist">
                                         <div class="select-dropdown__inner">
                                             <div tabindex="0" data-dropitem="1" class="item">
-                                                Placeholder 1
+                                                Field 1
                                             </div>
                                             <div tabindex="0" data-dropitem="1" class="item">
-                                                Placeholder 2
+                                                Field 2
                                             </div>
                                         </div>
                                     </div>
@@ -312,7 +312,7 @@
                                 <div class="select_wrapper">
                                     <div data-select="1" tabindex="0" class="select-header">
                                         <div class="select-header__text_wrapper">
-                                            <div class="select__text">Placeholder</div>
+                                            <div class="select__text">Comparator</div>
                                         </div>
                                         <svg class="select__icon" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -321,16 +321,39 @@
                                     <div data-droplist="1" class="droplist">
                                         <div class="select-dropdown__inner">
                                             <div tabindex="0" data-dropitem="1" class="item">
-                                                Placeholder 1
+                                                Comparator 1
                                             </div>
                                             <div tabindex="0" data-dropitem="1" class="item">
-                                                Placeholder 2
+                                                Comparator 2
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="select-remove">
+                                    <button type="button" class="btn-remove js-modal" data-modal="#modal_remove">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15.6464 15.648C16.1157 15.1787 16.1157 14.4178 15.6464 13.9485L9.69939 8.00082L15.648 2.05155C16.1173 1.58223 16.1173 0.821313 15.648 0.351993C15.1788 -0.117327 14.4179 -0.117327 13.9487 0.351992L8 6.30126L2.05134 0.35199C1.58207 -0.11733 0.821226 -0.11733 0.351954 0.35199C-0.117318 0.82131 -0.117318 1.58223 0.351954 2.05155L6.30061 8.00082L0.353586 13.9485C-0.115686 14.4178 -0.115686 15.1787 0.353586 15.648C0.822858 16.1173 1.5837 16.1173 2.05297 15.648L8 9.70038L13.947 15.648C14.4163 16.1173 15.1771 16.1173 15.6464 15.648Z" fill="#A2A2A2"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="hidden-cell">
+                                <div class="select_wrapper">
+                                    <div data-select="1" tabindex="0" class="select-header">
+                                        <div class="select-header__text_wrapper">
+                                            <div class="select__text">Value Type</div>
+                                        </div>
+                                        <svg class="select__icon" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div data-droplist="1" class="droplist">
+                                        <div class="select-dropdown__inner">
+                                            <div tabindex="0" data-dropitem="1" class="item">
+                                                Value Type 1
                                             </div>
                                             <div tabindex="0" data-dropitem="1" class="item">
-                                                Placeholder 2
-                                            </div>
-                                            <div tabindex="0" data-dropitem="1" class="item">
-                                                Placeholder 2
+                                                Value Type 2
                                             </div>
                                         </div>
                                     </div>
@@ -348,7 +371,7 @@
                                 <div class="select_wrapper">
                                     <div data-select="1" tabindex="0" class="select-header">
                                         <div class="select-header__text_wrapper">
-                                            <div class="select__text">Placeholder</div>
+                                            <div class="select__text">Value</div>
                                         </div>
                                         <svg class="select__icon" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -357,16 +380,10 @@
                                     <div data-droplist="1" class="droplist">
                                         <div class="select-dropdown__inner">
                                             <div tabindex="0" data-dropitem="1" class="item">
-                                                Placeholder 1
+                                                Value 1
                                             </div>
                                             <div tabindex="0" data-dropitem="1" class="item">
-                                                Placeholder 2
-                                            </div>
-                                            <div tabindex="0" data-dropitem="1" class="item">
-                                                Placeholder 2
-                                            </div>
-                                            <div tabindex="0" data-dropitem="1" class="item">
-                                                Placeholder 2
+                                                Value 2
                                             </div>
                                         </div>
                                     </div>
