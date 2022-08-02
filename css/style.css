@@ -17,6 +17,8 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
+/*-end reset-*/
+/*fonts START*/
 @font-face {
   font-family: "Manrope";
   src: url("../fonts/Manrope-Bold.woff");
@@ -66,6 +68,8 @@ time, mark, audio, video {
   font-weight: 800;
   font-style: normal;
 }
+/*fonts END*/
+/*general START*/
 a {
   text-decoration: none !important;
 }
@@ -116,12 +120,13 @@ main {
   height: auto;
 }
 
-/*variables*/
-/*variables end*/
 .content {
   flex: 1;
 }
 
+/*general END*/
+/*variables*/
+/*variables end*/
 /*primary*/
 .btn-primary {
   cursor: pointer;
@@ -264,8 +269,7 @@ main {
   background: #FFFFFF;
   border: 1px solid #E7EAEE;
   border-radius: 4px;
-  padding: 12px 12px 12px 40px;
-  min-width: 425px;
+  padding: 12px;
   transition: all 0.3s;
 }
 .input-box .input-style::placeholder {
@@ -293,6 +297,22 @@ main {
   opacity: 1;
   pointer-events: auto;
   transition: all 0.3s;
+}
+.input-box .input-style.error {
+  border: 1px solid #EF4444;
+  transition: all 0.3s;
+}
+.input-box .input-style.error::placeholder {
+  color: #EF4444;
+}
+.input-box .input-style.disabled {
+  pointer-events: none;
+  background: #F7F8F9;
+  border: 1px solid #D0D5DD;
+  transition: all 0.3s;
+}
+.input-box .input-style.disabled::placeholder {
+  color: #D0D5DD;
 }
 
 /*Input END*/
@@ -364,6 +384,11 @@ main {
   align-items: center;
   justify-content: flex-start;
   width: auto;
+}
+.search .input-style {
+  padding: 12px 12px 12px 40px;
+  min-width: 425px;
+  transition: all 0.3s;
 }
 
 /*Search line END*/
@@ -529,13 +554,13 @@ main {
   margin-right: -62px;
 }
 .table .hidden-table .hidden-cell {
-  width: 21%;
-  min-width: 21%;
+  width: calc(21% - 46px);
+  min-width: calc(21% - 46px);
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-right: 48px;
-  margin-bottom: 16px;
+  margin-right: 24px;
+  margin-bottom: 12px;
 }
 .table .hidden-table .hidden-cell .btn-remove {
   margin-left: 10px;
@@ -543,6 +568,17 @@ main {
 .table .hidden-table .hidden-cell .btn-remove svg {
   width: 14px;
   height: 14px;
+}
+.table .hidden-table .hidden-cell .input-box {
+  width: 100%;
+}
+.table .hidden-table .hidden-cell .input-style {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  width: 100%;
+  padding: 10px 12px;
+  transition: all 0.3s;
 }
 
 /*Table END*/
@@ -566,14 +602,20 @@ main {
   align-items: center;
   justify-content: space-between;
   background: #FFFFFF;
+  border: 1px solid rgba(100, 116, 139, 0.6);
   padding: 10px 12px;
-  border: 1px solid #E7EAEE;
   border-radius: 4px;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   color: #191D23;
+}
+.select-header[data-value=""] {
+  border: 1px solid #E7EAEE;
+}
+.select-header.js-active {
+  border: 1px solid rgba(100, 116, 139, 0.81);
 }
 .select-header:hover {
   transition: all 0.3s;
@@ -628,7 +670,29 @@ main {
 }
 
 .select-dropdown__inner {
+  max-height: 360px;
+  overflow-y: auto;
   width: 100%;
+}
+.select-dropdown__inner::-webkit-scrollbar-button {
+  -webkit-transition: 0.2s !important;
+  transition: 0.2s !important;
+  width: 5px;
+  height: 0;
+}
+.select-dropdown__inner::-webkit-scrollbar-track {
+  background: #f7f7f7;
+}
+.select-dropdown__inner::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background: #047857;
+}
+.select-dropdown__inner::-webkit-resizer {
+  width: 5px;
+  height: 5px;
+}
+.select-dropdown__inner::-webkit-scrollbar {
+  width: 5px;
 }
 .select-dropdown__inner .item {
   font-style: normal;
@@ -772,7 +836,5 @@ main {
 }
 
 /*Modal END*/
-/*Search line START*/
-/*Search line START*/
 
 /*# sourceMappingURL=style.css.map */
