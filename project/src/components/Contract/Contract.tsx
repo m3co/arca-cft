@@ -1,17 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../../App.css';
-import Logo from '../../images/logo.svg';
+import SelectSearch, { fuzzySearch } from "react-select-search";
 
 type Props = any
 
-const Contract: React.FC<Props> = () => {
-    const [value, setValue] = useState("")
-
+const Contract: React.FC<Props> = ({
+    reportType,
+    contractType,
+    BuiltInCategory,
+    ConstraintField,
+    QuantityField,
+    KeynoteField
+}) => {
+    const searchInputBuiltIn = useRef(null);
+    const options = [
+           { name: "Workshop Three", value: "1" },
+           { name: "Workshop Two", value: "2" },
+           { name: "Workshop Three", value: "3" },
+          { name: "Workshop Four", value: "4" },
+           { name: "Workshop Five", value: "5" }
+         ];
+         const handleChange = (e:any) => {
+            console.log(e.target.value)
+          };
+          const [value, setValue] = useState(BuiltInCategory);
     return (
 
         <div className="table__row">
                     <div className="table__row-part" data-name="Contract1">
-                        <div className="name">Contract Type</div>
+                        <div className="name">{contractType}</div>
                         <span>
                         <svg className="svg" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -22,7 +39,7 @@ const Contract: React.FC<Props> = () => {
                         <div className="select_wrapper">
                             <div data-select="1" tabIndex={0} className="select-header" data-value="">
                                 <div className="select-header__text_wrapper">
-                                    <div className="select__text">Report Type</div>
+                                    <div className="select__text">{reportType}</div>
                                 </div>
                                 <svg className="select__icon" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -31,10 +48,10 @@ const Contract: React.FC<Props> = () => {
                             <div data-droplist="1" className="droplist">
                                 <div className="select-dropdown__inner">
                                     <div tabIndex={0} data-dropitem="1" className="item">
-                                        Report Type 1
+                                        Schedule
                                     </div>
                                     <div tabIndex={0} data-dropitem="1" className="item">
-                                        Report Type 2
+                                        MaterialTakeoff
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +61,7 @@ const Contract: React.FC<Props> = () => {
                         <div className="select_wrapper">
                             <div data-select="2" tabIndex={0} className="select-header" data-value="">
                                 <div className="select-header__text_wrapper">
-                                    <div className="select__text">BuiltIn-Category</div>
+                                    <div className="select__text">{BuiltInCategory}</div>
                                 </div>
                                 <svg className="select__icon" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -61,12 +78,21 @@ const Contract: React.FC<Props> = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+    </div>
+                 {/*}   <SelectSearch
+                    options={options}
+                    value={value}
+                    onChange={setValue}
+                    search
+                    filterOptions={fuzzySearch}
+                    placeholder="Search something"
+                    
+/>*/}
                     <div className="table__row-part" data-name="Keynote">
                         <div className="select_wrapper">
                             <div data-select="3" tabIndex={0} className="select-header" data-value="">
                                 <div className="select-header__text_wrapper">
-                                    <div className="select__text">Key</div>
+                                    <div className="select__text">{KeynoteField}</div>
                                 </div>
                                 <svg className="select__icon" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -88,7 +114,7 @@ const Contract: React.FC<Props> = () => {
                         <div className="select_wrapper">
                             <div data-select="4" tabIndex={0} className="select-header" data-value="">
                                 <div className="select-header__text_wrapper">
-                                    <div className="select__text">Constraint</div>
+                                    <div className="select__text">{ConstraintField}</div>
                                 </div>
                                 <svg className="select__icon" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -110,7 +136,7 @@ const Contract: React.FC<Props> = () => {
                         <div className="select_wrapper">
                             <div data-select="5" tabIndex={0} className="select-header" data-value="">
                                 <div className="select-header__text_wrapper">
-                                    <div className="select__text">Quantity</div>
+                                    <div className="select__text">{QuantityField}</div>
                                 </div>
                                 <svg className="select__icon" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

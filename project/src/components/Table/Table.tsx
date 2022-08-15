@@ -12,32 +12,29 @@ const Table: React.FC<Props> = () => {
     const [isActive, setActive] = useState(true);
     const [allContracts, setAllContracts] = useState<any>({ contracts: null, isLoad: false });
 
-    const getContracts = async () => {
+    const getContracts = () => {
         getAllContracts()
-       /* .then(res => setAllContracts({ cameras: res.data.cameras, isLoad: true }))
+        .then(res => setAllContracts({ contracts: res, isLoad: true }))
         .catch(() => setAllContracts({ ...allContracts, isLoad: true }));
-        //addUser('test1', 'test1', '1')*/
-        .then(res => console.log(res))
     }
     useEffect(() => {
-        getContracts()
+        getContracts();
         
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, []);
+    }, [allContracts.isLoad]);
 
-
+    console.log(allContracts.contracts)
     return (
-<div className="table">
-        <div className="table__wrp">
-            <div className="table__header">
-                <div className="table__part" data-name="Contract">
-                    <div className="name">Contract Type</div>
-                    <span>
-                        <svg className="svg" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </span>
-                </div>
+        <div className="table">
+            <div className="table__wrp">
+                <div className="table__header">
+                    <div className="table__part" data-name="Contract">
+                        <div className="name">Contract Type</div>
+                        <span>
+                            <svg className="svg" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                        </span>
+                    </div>
                 <div className="table__part" data-name="Report">
                     <div className="name">Report Type</div>
                 </div>
@@ -56,7 +53,14 @@ const Table: React.FC<Props> = () => {
                 <div className="table__part-end" data-name="func"></div>
             </div>
                     </div>
-                    <Contract />
+                    {allContracts.contracts?.map((obj:any, index: number) =>
+                        <Contract reportType={obj.ReportType} key={index} contractType={obj.ContractType}
+                        BuiltInCategory={obj.BuiltInCategory} ConstraintField={obj.ConstraintField}
+                        QuantityField={obj.QuantityField} KeynoteField={obj.KeynoteField}
+                        />
+                    )
+                    }
+
                     </div>
                     );
 }
