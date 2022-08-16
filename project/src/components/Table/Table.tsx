@@ -19,7 +19,8 @@ const Table: React.FC<Props> = ({
     const [value, setValue] = useState("");
 
     const change = (e: any) => {
-        setValue(e.target.value)
+        setValue(e.target.value);
+        
     }
     const click = (e: any) => {
         e.preventDefault();
@@ -27,7 +28,12 @@ const Table: React.FC<Props> = ({
         .then(res => setAllContracts({ contracts: res, isLoad: true }))
         .catch(() => setAllContracts({ ...allContracts, isLoad: true }));
     }
-    
+
+    useEffect(() => {
+        if(value === '') {
+            getContracts()
+        }
+    }, [value]);
     return (
         <>
             <div className="search">
