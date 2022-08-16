@@ -597,6 +597,15 @@ html {
   line-height: 17px;
   color: #191D23;
 }
+.select-header2 {
+  font-size: 14px;
+  border-radius: 4px;
+}
+.select-header2:hover {
+  transition: all 0.3s;
+  border: 1px solid #047857;
+  color: #047857;
+}
 .select-header[data-value=""] {
   border: 1px solid #E7EAEE;
 }

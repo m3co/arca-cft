@@ -28,6 +28,9 @@ export const requestFetch: RequestFetch = async ({
     if (answer.status === 409) {
       throw new Error('status409');
     }
+    if (answer.status === 404) {
+      throw new Error('status404');
+    }
     if (answer.status === 406) {
       throw new Error('status406');
     }

@@ -56,7 +56,7 @@ const Table: React.FC<Props> = () => {
                     {allContracts.contracts?.map((obj:any, index: number) =>
                         <Contract reportType={obj.ReportType} key={index} contractType={obj.ContractType}
                         BuiltInCategory={obj.BuiltInCategory} ConstraintField={obj.ConstraintField}
-                        QuantityField={obj.QuantityField} KeynoteField={obj.KeynoteField}
+                        QuantityField={obj.QuantityField} KeynoteField={obj.KeynoteField} obj={obj}
                         />
                     )
                     }
