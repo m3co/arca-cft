@@ -17,3 +17,11 @@ export const updateContract = (body: any) => (
         body: body
      })
 );
+
+export const deleteContract = (body: any) => (
+    requestFetch({ 
+        url: `api/v1/cft-definitions/remove`, 
+        method: 'POST',
+        body: body
+     })
+);

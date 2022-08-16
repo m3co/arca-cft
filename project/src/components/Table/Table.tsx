@@ -5,20 +5,17 @@ import {getAllContracts, mainSearch} from './TableService';
 
 type Props = any
 
-const Table: React.FC<Props> = () => {
-    const [isActive, setActive] = useState(true);
-    const [allContracts, setAllContracts] = useState<any>({ contracts: null, isLoad: false });
-
-    const getContracts = () => {
-        getAllContracts()
-        .then(res => setAllContracts({ contracts: res, isLoad: true }))
-        .catch(() => setAllContracts({ ...allContracts, isLoad: true }));
-    }
-    useEffect(() => {
-        getContracts();
-        
-    }, [allContracts.isLoad]);
-    console.log(allContracts)
+const Table: React.FC<Props> = ({
+    getContracts,
+    setAllContracts,
+    allContracts,
+    isActiveFormDel,
+    setActiveFormDel,
+    isActiveFormAddFilter,
+    setActiveFormAddFilter,
+    isActiveFormDelFilter,
+    setActiveFormDelFilter
+}) => {
     const [value, setValue] = useState("");
 
     const change = (e: any) => {
@@ -31,7 +28,6 @@ const Table: React.FC<Props> = () => {
         .catch(() => setAllContracts({ ...allContracts, isLoad: true }));
     }
     
- 
     return (
         <>
             <div className="search">
@@ -84,6 +80,10 @@ const Table: React.FC<Props> = () => {
                             <Contract reportType={obj.ReportType} key={index} contractType={obj.ContractType}
                             BuiltInCategory={obj.BuiltInCategory} ConstraintField={obj.ConstraintField}
                             QuantityField={obj.QuantityField} KeynoteField={obj.KeynoteField} obj={obj}
+                            setActiveFormDel={setActiveFormDel} isActiveFormDel={isActiveFormDel}
+                            getContracts={getContracts} setActiveFormAddFilter={setActiveFormAddFilter}
+                            isActiveFormAddFilter={isActiveFormAddFilter} isActiveFormDelFilter={isActiveFormDelFilter}
+                            setActiveFormDelFilter={setActiveFormDelFilter}
                             />
                         )
                     }
