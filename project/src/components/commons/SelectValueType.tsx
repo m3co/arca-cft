@@ -1,21 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { getSearchBuiltIn, updateContract } from "../Contract/ContractService";
-import AsyncSelect from 'react-select/async';
+import React, { useState } from "react";
+import { updateContract } from "../Contract/ContractService";
 import Select, { StylesConfig } from 'react-select';
+import { ContractType, Filter } from "../types";
 
-const SelectValueType: React.FC<any> = ({
-    value5,
+interface Props {
+  obj: ContractType;
+  valueField: string;
+  miniObj: Filter;
+}
+const SelectValueType: React.FC<Props> = ({
+    valueField,
     obj,
     miniObj
 }) => {
-    const [value1, setValue] = useState({value:value5, label: value5});
+    const [valueSelect, setValueSelect] = useState({value: valueField, label: valueField});
 
     const options = [
         {value: "String", label: "String"},
         {value: "Integer", label: "Integer"},
         {value: "Double", label: "Double"},
         {value: "Null", label: "Null"},
-    ]
+    ];
 
     const colourStyles: StylesConfig<any> = {
         control: (styles) => ({ ...styles, 
@@ -43,31 +48,37 @@ const SelectValueType: React.FC<any> = ({
             },
           };
         },
-        dropdownIndicator: (styles) => ({ ...styles, fill: 'rgb(100, 116, 139)', "svg": {
-            fill: "rgb(100, 116, 139)"
-          }}),
+        dropdownIndicator: (base, state) => ({
+            ...base,
+            fill: 'rgb(100, 116, 139)', 
+            "svg": {
+                fill: "rgb(100, 116, 139)"
+              },
+            transition: 'all .2s ease',
+            transform: state.isFocused ? 'rotate(180deg)' : undefined
+        }),
         input: (styles) => ({ ...styles}),
         placeholder: (styles) => ({ ...styles}),
         singleValue: (styles, { data }) => ({ ...styles }),
     };
 
     const onChangeSelectedOption = (e: any) => {
-        setValue(e);
+        setValueSelect(e);
         miniObj.ValueType = e.label;
         updateContract(JSON.stringify(obj));
     };
 
     return (
       <div className="select">
-        <Select 
-        options={options} 
-        styles={colourStyles} 
-        components={{ IndicatorSeparator:() => null }}
-        value={value1}
-        onChange={onChangeSelectedOption}
-        />
+          <Select 
+          options={options} 
+          styles={colourStyles} 
+          components={{ IndicatorSeparator:() => null }}
+          value={valueSelect}
+          onChange={onChangeSelectedOption}
+          />
       </div>
     );
-  };
+};
 
-  export default SelectValueType;
+export default SelectValueType;

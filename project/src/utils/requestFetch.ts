@@ -1,7 +1,7 @@
 interface RequestFetchProps {
   url: string;
   method: 'POST' | 'GET' | 'DELETE' | 'PUT';
-  body?: string;
+  body?: any;
   headers?: object;
   type?: 'json' | 'text' | 'blob' | 'arrayBuffer' | 'arrayBuffer';
   mode?: "no-cors" | "cors" | "navigate" | "same-origin" | undefined;
@@ -35,6 +35,7 @@ export const requestFetch: RequestFetch = async ({
       throw new Error('status406');
     }
     const string = await answer[type]();
+    
     return string;
    
   } catch (error: any) {

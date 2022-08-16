@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { getSearchBuiltIn, updateContract } from "../Contract/ContractService";
-import AsyncSelect from 'react-select/async';
+import React, { useState } from "react";
+import { updateContract } from "../Contract/ContractService";
 import Select, { StylesConfig } from 'react-select';
+import { ContractType } from "../types";
 
-const SelectReportType: React.FC<any> = ({
-    value5,
+interface Props {
+  obj: ContractType;
+  valueField: string;
+}
+const SelectReportType: React.FC<Props> = ({
+    valueField,
     obj
 }) => {
-    const [value1, setValue] = useState({value:value5, label: value5});
+    const [valueSelect, setValueSelect] = useState({value: valueField, label: valueField});
 
     const options = [
         {value: "Schedule", label: "Schedule"},
         {value: "MaterialTakeoff", label: "MaterialTakeoff"},
-    ]
+    ];
 
     const colourStyles: StylesConfig<any> = {
         control: (styles) => ({ ...styles, 
@@ -40,31 +44,37 @@ const SelectReportType: React.FC<any> = ({
             },
           };
         },
-        dropdownIndicator: (styles) => ({ ...styles, fill: 'rgb(100, 116, 139)', "svg": {
-            fill: "rgb(100, 116, 139)"
-          }}),
+        dropdownIndicator: (base, state) => ({
+          ...base,
+          fill: 'rgb(100, 116, 139)', 
+          "svg": {
+              fill: "rgb(100, 116, 139)"
+            },
+          transition: 'all .2s ease',
+          transform: state.isFocused ? 'rotate(180deg)' : undefined
+        }),
         input: (styles) => ({ ...styles}),
         placeholder: (styles) => ({ ...styles}),
         singleValue: (styles, { data }) => ({ ...styles }),
     };
 
     const onChangeSelectedOption = (e: any) => {
-        setValue(e);
+        setValueSelect(e);
         obj.ReportType = e.label;
         updateContract(JSON.stringify(obj));
     };
 
     return (
-      <div className="select">
-        <Select 
-        options={options} 
-        styles={colourStyles} 
-        components={{ IndicatorSeparator:() => null }}
-        value={value1}
-        onChange={onChangeSelectedOption}
-        />
-      </div>
+        <div className="select">
+          <Select 
+          options={options} 
+          styles={colourStyles} 
+          components={{ IndicatorSeparator:() => null }}
+          value={valueSelect}
+          onChange={onChangeSelectedOption}
+          />
+        </div>
     );
-  };
+};
 
-  export default SelectReportType;
+export default SelectReportType;

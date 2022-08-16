@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { getSearchBuiltIn, updateContract } from "../Contract/ContractService";
+import React, { useState } from "react";
+import { updateContract } from "../Contract/ContractService";
+import { ContractType, Filter } from "../types";
 
+interface Props {
+    obj: ContractType;
+    miniObj: Filter;
+}
 
-const InputCommand: React.FC<any> = ({
+const InputCommand: React.FC<Props> = ({
     obj,
     miniObj
 }) => {
     const [valueCommand, setValueCommand] = useState(miniObj.Command);
-
+    
     return (
         <div className="input-box">
             <input type="text" 
@@ -26,6 +31,6 @@ const InputCommand: React.FC<any> = ({
             />
         </div>
     );
-  };
+};
 
-  export default InputCommand;
+export default InputCommand;

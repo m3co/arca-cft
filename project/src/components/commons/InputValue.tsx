@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { getSearchBuiltIn, updateContract } from "../Contract/ContractService";
+import React, { useState } from "react";
+import { updateContract } from "../Contract/ContractService";
+import { ContractType, Filter } from "../types";
 
+interface Props {
+    obj: ContractType;
+    miniObj: Filter;
+}
 
-const InputValue: React.FC<any> = ({
+const InputValue: React.FC<Props> = ({
     obj,
     miniObj
 }) => {
@@ -26,6 +31,6 @@ const InputValue: React.FC<any> = ({
             />
         </div>
     );
-  };
+};
 
-  export default InputValue;
+export default InputValue;
