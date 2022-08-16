@@ -5,8 +5,6 @@ import Logo from '../../images/logo.svg';
 type Props = any
 
 const Header: React.FC<Props> = () => {
-    const [value, setValue] = useState("")
-
     return (
         <>
             <div className='header'>
@@ -29,23 +27,6 @@ const Header: React.FC<Props> = () => {
                             Add
                         </div>
                     </div>
-                </div>
-            </div>
-            <div className="search">
-                <div className="search__line">
-                    <form id="search" className="search__form">
-                        <div className="input-box">
-                            <svg className="icon" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z"
-                                    stroke="#A1A1A1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                <path d="M14 14L11.1 11.1" stroke="#A1A1A1" strokeWidth="2" strokeLinecap="round"
-                                    strokeLinejoin="round"/>
-                            </svg>
-                            <input type="text" className="input-style" required placeholder="Search by invoice number, name, amount..." value={value} />
-                            <button type="submit" className="btn-primary">Search</button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </>
