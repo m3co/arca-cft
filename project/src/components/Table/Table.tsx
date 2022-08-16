@@ -18,7 +18,7 @@ const Table: React.FC<Props> = () => {
         getContracts();
         
     }, [allContracts.isLoad]);
-
+    console.log(allContracts)
     const [value, setValue] = useState("");
 
     const change = (e: any) => {

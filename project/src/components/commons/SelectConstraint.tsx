@@ -26,10 +26,7 @@ const SelectConstraint: React.FC<any> = ({
         }
     }
 
-    useEffect(() => {
-        console.log(obj)
-        
-    }, [obj]);
+ 
 
     const colourStyles: StylesConfig<any> = {
         control: (styles) => ({ ...styles, 

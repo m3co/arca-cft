@@ -3,9 +3,10 @@ import { getSearchBuiltIn, getSearchForOther, updateContract } from "../Contract
 import AsyncSelect from 'react-select/async';
 import Select, { StylesConfig } from 'react-select';
 
-const SelectQuantity: React.FC<any> = ({
+const SelectFieldFilters: React.FC<any> = ({
     value5,
-    obj
+    obj,
+    miniObj
 }) => {
     const [value1, setValue] = useState({value:value5, label: value5});
     const promiseOptions = (inputValue: string) => {
@@ -26,7 +27,7 @@ const SelectQuantity: React.FC<any> = ({
         }
     }
 
-
+ 
 
     const colourStyles: StylesConfig<any> = {
         control: (styles) => ({ ...styles, 
@@ -64,7 +65,7 @@ const SelectQuantity: React.FC<any> = ({
 
     const onChangeSelectedOption = (e: any) => {
         setValue(e);
-        obj.QuantityField = e.label;
+        miniObj.Field = e.label;
         updateContract(JSON.stringify(obj));
     };
 
@@ -81,4 +82,4 @@ const SelectQuantity: React.FC<any> = ({
     );
   };
 
-  export default SelectQuantity;
+  export default SelectFieldFilters;

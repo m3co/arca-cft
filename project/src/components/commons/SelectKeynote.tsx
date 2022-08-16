@@ -26,11 +26,6 @@ const SelectKeynote: React.FC<any> = ({
         }
     }
 
-    useEffect(() => {
-        console.log(obj)
-        
-    }, [obj]);
-
     const colourStyles: StylesConfig<any> = {
         control: (styles) => ({ ...styles, 
             backgroundColor: 'white', 
