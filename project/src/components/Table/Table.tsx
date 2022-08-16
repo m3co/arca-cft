@@ -52,11 +52,6 @@ const Table: React.FC<Props> = ({
                 <div className="table__header">
                     <div className="table__part" data-name="Contract">
                         <div className="name">Contract Type</div>
-                        <span>
-                            <svg className="svg" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                        </span>
                     </div>
                 <div className="table__part" data-name="Report">
                     <div className="name">Report Type</div>
