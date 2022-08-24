@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import InputCommand from '../commons/InputCommand';
 import InputValue from '../commons/InputValue';
@@ -116,6 +116,7 @@ const Contract: React.FC<Props> = ({
                 <div className="hidden-table">
                     {obj.Filters.map((miniObj: any, index: number) => {
                         let keyValue = Date.now() + index;
+                        {console.log(keyValue)}
                         return (
                             <div className="hidden-row" key={keyValue}>
                                 <div className="hidden-cell">

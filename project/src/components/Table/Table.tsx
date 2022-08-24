@@ -44,7 +44,6 @@ const Table: React.FC<Props> = ({
         if(value === '') {
             getContracts();
         }
-        // eslint-disable-next-line
     }, [value]);
 
     return (
@@ -90,8 +89,8 @@ const Table: React.FC<Props> = ({
                         <div className="table__part-end" data-name="func"></div>
                     </div>
                 </div>
-                {allContracts.contracts?.map((obj:ContractType, index: number) =>
-                    <Contract reportType={obj.ReportType} key={index} contractType={obj.ContractType}
+                {allContracts.contracts?.map((obj:ContractType) =>
+                    <Contract reportType={obj.ReportType} key={obj.ID} contractType={obj.ContractType}
                     BuiltInCategory={obj.BuiltInCategory} ConstraintField={obj.ConstraintField}
                     QuantityField={obj.QuantityField} KeynoteField={obj.KeynoteField} obj={obj}
                     setActiveFormDel={setActiveFormDel} isActiveFormDel={isActiveFormDel}

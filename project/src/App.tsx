@@ -19,8 +19,7 @@ const App = () => {
   }
 
   useEffect(() => {
-      getContracts(); 
-      // eslint-disable-next-line
+      getContracts();
   }, [allContracts.isLoad]);
 
   return (

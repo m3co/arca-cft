@@ -3,6 +3,7 @@ import { getSearchBuiltIn, updateContract } from "../Contract/ContractService";
 import AsyncSelect from 'react-select/async';
 import { StylesConfig } from 'react-select';
 import { ContractType } from "../types";
+import Tooltip from '@mui/material/Tooltip';
 
 interface Props {
     obj: ContractType;
@@ -26,7 +27,18 @@ const SearchSelectBuiltIn: React.FC<Props> = ({
         }))
         return formatted;
     }
-
+      
+    const valueForSelectWithTooltip = {
+        value: valueSelect.value,
+        label: (
+            <Tooltip placement="top" title={valueSelect.label} arrow>
+                <span style={{overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',width: '95%',position: 'absolute', top: 5}}>
+                    {valueSelect.label}
+                </span>
+            </Tooltip>
+        )
+    }
+    
     const colourStyles: StylesConfig<any> = {
         control: (styles) => ({ ...styles, 
             backgroundColor: 'white', 
@@ -62,9 +74,13 @@ const SearchSelectBuiltIn: React.FC<Props> = ({
             transition: 'all .2s ease',
             transform: state.isFocused ? 'rotate(180deg)' : undefined
         }),
-        input: (styles) => ({ ...styles}),
+        input: (styles) => ({
+            ...styles,
+        }),
         placeholder: (styles) => ({ ...styles}),
-        singleValue: (styles) => ({ ...styles }),
+        singleValue: (styles) => ({ 
+            ...styles,
+        }),
     };
 
     const onChangeSelectedOption = (e: any) => {
@@ -79,7 +95,7 @@ const SearchSelectBuiltIn: React.FC<Props> = ({
         loadOptions={getModelsAPI} 
         styles={colourStyles} 
         components={{ IndicatorSeparator:() => null }}
-        value={valueSelect}
+        value={valueForSelectWithTooltip}
         onChange={onChangeSelectedOption}
         />
       </div>
