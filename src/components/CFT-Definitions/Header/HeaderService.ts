@@ -1,4 +1,4 @@
-import { requestFetch } from '../../utils/requestFetch';
+import { requestFetch } from '../../../utils/requestFetch';
 
 interface Body {
     ContractType: string;

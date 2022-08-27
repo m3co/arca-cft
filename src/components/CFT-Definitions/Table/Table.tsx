@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../../App.css';
+import '../../../App.css';
 import Contract from '../Contract/Contract';
 import { mainSearch } from './TableService';
 import { ContractType } from '../types';

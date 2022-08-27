@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import '../../App.css';
-import Logo from '../../images/logo.svg';
+import '../../../App.css';
+import Logo from '../../../images/logo.svg';
 import { addContract } from './HeaderService';
 
 interface Props {

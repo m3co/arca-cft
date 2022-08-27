@@ -1,4 +1,4 @@
-import { requestFetch } from '../../utils/requestFetch';
+import { requestFetch } from '../../../utils/requestFetch';
 import { ContractType } from '../types';
 
 export const getSearchBuiltIn = (value: string) => (
