@@ -116,7 +116,6 @@ const Contract: React.FC<Props> = ({
                 <div className="hidden-table">
                     {obj.Filters.map((miniObj: any, index: number) => {
                         let keyValue = Date.now() + index;
-                        {console.log(keyValue)}
                         return (
                             <div className="hidden-row" key={keyValue}>
                                 <div className="hidden-cell">

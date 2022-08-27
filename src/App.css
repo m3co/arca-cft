@@ -311,6 +311,9 @@ html {
   width: 100%;
   margin-bottom: 32px;
 }
+.headerReports {
+  margin-left: auto;
+}
 .header__logo {
   display: block;
   width: max-content;
@@ -829,4 +832,24 @@ html {
 
 .hidden {
   display: none;
+}
+.btnRoute {
+  background-color: #0478572c;
+  width: 100px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btnRouteActive {
+  background-color: #047857;
+  width: 100px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  cursor: pointer;
 }

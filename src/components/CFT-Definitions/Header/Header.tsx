@@ -34,7 +34,7 @@ const Header: React.FC<Props> = ({
                 </a>
                 <div className="header__wrp-info">
                     <div className="header__wrp-titles">
-                        <h1>CFT Admin</h1>
+                        <h1>CFT Definitions</h1>
                         <h2>Manage the contract-template details</h2>
                     </div>
                     <div className="header__wrp-options" onClick={() => setActiveFormAdd(!isActiveFormAdd)}>

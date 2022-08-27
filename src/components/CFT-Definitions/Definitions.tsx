@@ -23,7 +23,7 @@ const Definitions = () => {
   }, [allContracts.isLoad]);
 
   return (
-    <div className="App">
+    <div>
       <Header 
       getContracts={getContracts} 
       isActiveFormAdd={isActiveFormAdd} 
