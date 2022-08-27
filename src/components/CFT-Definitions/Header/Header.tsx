@@ -29,9 +29,6 @@ const Header: React.FC<Props> = ({
     return (
         <>
             <div className='header'>
-                <a href="/" className="header__logo">
-                    <img src={Logo} alt='logo'/>
-                </a>
                 <div className="header__wrp-info">
                     <div className="header__wrp-titles">
                         <h1>CFT Definitions</h1>

@@ -10,50 +10,36 @@ import SelectKeynote from '../commons/SelectKeynote';
 import SelectQuantity from '../commons/SelectQuantity';
 import SelectReportType from '../commons/SelectReportType';
 import SelectValueType from '../commons/SelectValueType';
-import { ContractType } from '../types';
-import { deleteContract, addReport } from './ContractService';
+import { ReportType } from '../types';
+import { deleteReport, addReport } from './ReportService';
 
 interface Props {
     reportType: string;
     contractType: string;
     BuiltInCategory: string;
-    ConstraintField: string;
-    QuantityField: string;
-    KeynoteField: string;
-    obj: ContractType;
-    isActiveFormDel: ContractType | null;
+    obj: ReportType;
+    isActiveFormDel: ReportType | null;
     setActiveFormDel: Function;
-    getContracts: () => void;
-    isActiveFormAddFilter: ContractType | null;
-    setActiveFormAddFilter: Function;
-    setActiveFormDelFilter: Function;
-    isActiveFormDelFilter: any;
+    getReports: () => void;
 }
 
 const Contract: React.FC<Props> = ({
     reportType,
     contractType,
     BuiltInCategory,
-    ConstraintField,
-    QuantityField,
-    KeynoteField,
     obj,
     isActiveFormDel,
     setActiveFormDel,
-    getContracts,
-    isActiveFormAddFilter,
-    setActiveFormAddFilter,
-    setActiveFormDelFilter,
-    isActiveFormDelFilter
+    getReports,
 }) => {
     const [isShow, setShow] = useState(false);
     const [valueKeynote, setValueKeynote] = useState({value:'', label: ''});
     const [valueConstraint, setValueConstraint] = useState({value:'', label: ''});
     const [valueQuantity, setValueQuantity] = useState({value:'', label: ''});
 
-    const deleteCont = () => {
-        deleteContract(JSON.stringify(isActiveFormDel))
-        .then(() => getContracts());
+    const deleteRep = () => {
+        deleteReport(JSON.stringify(isActiveFormDel))
+        .then(() => getReports());
         setActiveFormDel(null);
     }
    
@@ -65,9 +51,14 @@ const Contract: React.FC<Props> = ({
             QuantityField: valueQuantity.value,
             Processed: false,
         }
-        addReport(JSON.stringify(body))
-        .then(() => getContracts());
+        obj.KeynoteField = valueKeynote.value;
+        obj.ConstraintField = valueConstraint.value;
+        obj.QuantityField = valueQuantity.value;
+
+        addReport(JSON.stringify(obj))
+        .then(() => getReports());
     }
+
     return (
         <>
             <div className="table__row">
@@ -92,6 +83,8 @@ const Contract: React.FC<Props> = ({
                     </button>
                 </div>
                 <button 
+                className={valueKeynote.value === '' || valueConstraint.value === '' || valueQuantity.value === '' ? 'btn-primary disabled': 'btn-primary'}
+                style={{height: 30, fontSize: 14}}
                 onClick={postReport} 
                 disabled={valueKeynote.value === '' || valueConstraint.value === '' || valueQuantity.value === ''}
                 >
@@ -138,7 +131,7 @@ const Contract: React.FC<Props> = ({
                     <div className="modal-comment">Are you sure?</div>
                     <div className="modal-buttons">
                         <button type="button" className="btn btn-primary modal-close" onClick={() => setActiveFormDel(null)}>Cancel</button>
-                        <button type="button" className="btn btn-secondary modal-close" onClick={deleteCont}>Delete</button>
+                        <button type="button" className="btn btn-secondary modal-close" onClick={deleteRep}>Delete</button>
                     </div>
                 </div>
             </div>

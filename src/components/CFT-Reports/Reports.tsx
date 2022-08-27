@@ -3,40 +3,34 @@ import Header from './Header/Header';
 import '../../App.css';
 import Table from './Table/Table';
 import { getAllReports } from './Table/TableService';
-import { ContractType } from './types';
+import { ReportType } from './types';
 
 const Reports = () => {
-    const [allContracts, setAllContracts] = useState<{contracts: ContractType[] | null, isLoad: boolean}>({ contracts: null, isLoad: false });
-    const [isActiveFormAdd, setActiveFormAdd] = useState(false);
-    const [isActiveFormDel, setActiveFormDel] = useState<ContractType | null>(null);
-    const [isActiveFormAddFilter, setActiveFormAddFilter] = useState<ContractType | null>(null);
-    const [isActiveFormDelFilter, setActiveFormDelFilter] = useState<ContractType | null>(null);
-  
-    const getContracts = () => {
+    const [allReports, setAllReports] = useState<{reports: ReportType[] | null, isLoad: boolean}>({ reports: null, isLoad: false });
+    const [isActiveFormDel, setActiveFormDel] = useState<ReportType | null>(null);
+
+    const getReports = () => {
         getAllReports()
-        .then(res => setAllContracts({ contracts: res, isLoad: true }))
-        .catch(() => setAllContracts({ ...allContracts, isLoad: true }));
+        .then(res => setAllReports({ reports: res, isLoad: true }))
+        .catch(() => setAllReports({ ...allReports, isLoad: true }));
     }
-    console.log(allContracts.contracts)
+    console.log(allReports.reports)
   
     useEffect(() => {
-        getContracts();
-    }, [allContracts.isLoad]);
-  return (
-    <div>
-        <Header />
-        <Table 
-              allContracts={allContracts} 
-              setAllContracts={setAllContracts} 
-              getContracts={getContracts}
-              isActiveFormDel={isActiveFormDel} 
-              setActiveFormDel={setActiveFormDel} 
-              isActiveFormAddFilter={isActiveFormAddFilter}
-              setActiveFormAddFilter={setActiveFormAddFilter} 
-              isActiveFormDelFilter={isActiveFormDelFilter} 
-              setActiveFormDelFilter={setActiveFormDelFilter}/>
-    </div>
-  );
+        getReports();
+    }, [allReports.isLoad]);
+
+    return (
+        <div>
+            <Header />
+            <Table 
+            allReports={allReports} 
+            getReports={getReports}
+            isActiveFormDel={isActiveFormDel} 
+            setActiveFormDel={setActiveFormDel} 
+            />
+        </div>
+    );
 }
 
 export default Reports;

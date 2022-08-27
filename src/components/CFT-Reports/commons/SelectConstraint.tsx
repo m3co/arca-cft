@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { getSearchForOther, updateContract } from "../Contract/ContractService";
+import { getSearchForOther, updateContract } from "../Report/ReportService";
 import Select from 'react-select';
 import { StylesConfig } from 'react-select';
-import { ContractType } from "../types";
+import { ReportType } from "../types";
 
 interface Props {
-  obj: ContractType;
-  valueConstraint: any;
-  setValueConstraint: any;
+  obj: ReportType;
+  valueConstraint: {value: string, label: string};
+  setValueConstraint: Function;
 }
 
 const SelectConstraint: React.FC<Props> = ({

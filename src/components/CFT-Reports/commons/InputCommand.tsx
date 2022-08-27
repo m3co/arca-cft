@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { updateContract } from "../Contract/ContractService";
-import { ContractType, Filter } from "../types";
+import { updateContract } from "../Report/ReportService";
+import { ReportType, Filter } from "../types";
 
 interface Props {
-    obj: ContractType;
+    obj: ReportType;
     miniObj: Filter;
 }
 

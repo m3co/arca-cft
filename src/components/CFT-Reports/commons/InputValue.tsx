@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { updateContract } from "../Contract/ContractService";
-import { ContractType, Filter } from "../types";
+import { updateContract } from "../Report/ReportService";
+import { ReportType, Filter } from "../types";
 
 interface Props {
-    obj: ContractType;
+    obj: ReportType;
     miniObj: Filter;
 }
 
@@ -21,7 +21,8 @@ const InputValue: React.FC<Props> = ({
             required 
             placeholder="Value"
             value={value}
-            disabled            />
+            disabled
+            />
         </div>
     );
 };

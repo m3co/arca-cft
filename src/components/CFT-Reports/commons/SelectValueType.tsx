@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { updateContract } from "../Contract/ContractService";
+import { updateContract } from "../Report/ReportService";
 import Select, { StylesConfig } from 'react-select';
-import { ContractType, Filter } from "../types";
+import { ReportType, Filter } from "../types";
 
 interface Props {
-  obj: ContractType;
+  obj: ReportType;
   valueField: string;
   miniObj: Filter;
 }
@@ -23,7 +23,7 @@ const SelectValueType: React.FC<Props> = ({
     ];
 
     const colourStyles: StylesConfig<any> = {
-        control: (styles) => ({ ...styles, 
+        control: (styles, {isDisabled}) => ({ ...styles, 
             backgroundColor: 'white', 
             fontSize: 14, 
             borderColor: '#E7EAEE',
@@ -37,6 +37,9 @@ const SelectValueType: React.FC<Props> = ({
             ':active': {
                 borderColor: 'rgba(100, 116, 139, 0.81)',
             },
+            '& div': {
+                color: isDisabled ? 'rgb(51, 51, 51)' : 'rgb(51, 51, 51)',
+              },
         }),
         option: (styles, { data, isDisabled, isFocused, isSelected }) => {
           return {
@@ -73,7 +76,7 @@ const SelectValueType: React.FC<Props> = ({
           <Select 
           options={options} 
           styles={colourStyles} 
-          components={{ IndicatorSeparator:() => null }}
+          components={{ IndicatorSeparator:() => null, DropdownIndicator:() => null }}
           value={valueSelect}
           onChange={onChangeSelectedOption}
           isDisabled={true}

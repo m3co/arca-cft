@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { getSearchBuiltIn, updateContract } from "../Contract/ContractService";
+import { getSearchBuiltIn, updateContract } from "../Report/ReportService";
 import AsyncSelect from 'react-select/async';
 import { StylesConfig } from 'react-select';
-import { ContractType } from "../types";
+import { ReportType } from "../types";
 import Tooltip from '@mui/material/Tooltip';
 
 interface Props {
-    obj: ContractType;
+    obj: ReportType;
     valueField: string;
 }
 
@@ -40,11 +40,14 @@ const SearchSelectBuiltIn: React.FC<Props> = ({
     }
     
     const colourStyles: StylesConfig<any> = {
-        control: (styles) => ({ ...styles, 
+        control: (styles, { isDisabled}) => ({ ...styles, 
             backgroundColor: 'white', 
             fontSize: 14, 
             borderColor: '#E7EAEE',
             cursor: 'pointer',
+            '& span': {
+                color: isDisabled ? 'rgb(51, 51, 51)' : 'rgb(51, 51, 51)',
+            },
             width: 200,
             ':hover': {
                 borderColor: '#047857',
@@ -59,7 +62,6 @@ const SearchSelectBuiltIn: React.FC<Props> = ({
           return {
             ...styles,
             borderColor: isFocused ? 'rgba(100, 116, 139, 0.81)' : '#047857',
-      
             ':active': {
                 borderColor: 'rgba(100, 116, 139, 0.81)',
             },
@@ -94,7 +96,7 @@ const SearchSelectBuiltIn: React.FC<Props> = ({
         <AsyncSelect 
         loadOptions={getModelsAPI} 
         styles={colourStyles} 
-        components={{ IndicatorSeparator:() => null }}
+        components={{ IndicatorSeparator:() => null, DropdownIndicator:() => null }}
         value={valueForSelectWithTooltip}
         onChange={onChangeSelectedOption}
         isDisabled={true}

@@ -1,33 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import '../../../App.css';
-import Contract from '../Contract/Contract';
-import { mainSearch } from './TableService';
-import { ContractType } from '../types';
+import Report from '../Report/Report';
+import { ReportType } from '../types';
 
 interface Props {
-    getContracts: () => void;
-    setAllContracts: Function;
-    allContracts: {contracts: ContractType[] | null, isLoad: boolean};
-    isActiveFormDel: ContractType | null;
+    getReports: () => void;
+    allReports: {reports: ReportType[] | null, isLoad: boolean};
+    isActiveFormDel: ReportType | null;
     setActiveFormDel: Function;
-    isActiveFormAddFilter: ContractType | null;
-    setActiveFormAddFilter: Function;
-    isActiveFormDelFilter: ContractType | null;
-    setActiveFormDelFilter: Function;
 }
 
 const Table: React.FC<Props> = ({
-    getContracts,
-    setAllContracts,
-    allContracts,
+    getReports,
+    allReports,
     isActiveFormDel,
     setActiveFormDel,
-    isActiveFormAddFilter,
-    setActiveFormAddFilter,
-    isActiveFormDelFilter,
-    setActiveFormDelFilter
 }) => {
-
     return (
         <>
             <div className="table">
@@ -54,14 +42,11 @@ const Table: React.FC<Props> = ({
                         <div className="table__part-end" data-name="func"></div>
                     </div>
                 </div>
-                {allContracts.contracts?.map((obj:ContractType) =>
-                    <Contract reportType={obj.ReportType} key={obj.ID} contractType={obj.ContractType}
-                    BuiltInCategory={obj.BuiltInCategory} ConstraintField={obj.ConstraintField}
-                    QuantityField={obj.QuantityField} KeynoteField={obj.KeynoteField} obj={obj}
+                {allReports.reports?.map((obj:ReportType) =>
+                    <Report reportType={obj.ReportType} key={obj.ID} contractType={obj.ContractType}
+                    BuiltInCategory={obj.BuiltInCategory} obj={obj}
                     setActiveFormDel={setActiveFormDel} isActiveFormDel={isActiveFormDel}
-                    getContracts={getContracts} setActiveFormAddFilter={setActiveFormAddFilter}
-                    isActiveFormAddFilter={isActiveFormAddFilter} isActiveFormDelFilter={isActiveFormDelFilter}
-                    setActiveFormDelFilter={setActiveFormDelFilter}
+                    getReports={getReports}
                     />
                 )}
             </div>

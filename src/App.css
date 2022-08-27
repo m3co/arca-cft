@@ -103,7 +103,7 @@ html {
   font-weight: normal;
   height: 100%;
   width: auto;
-  max-width: 1360px;
+  max-width: 1400px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -317,7 +317,6 @@ html {
 .header__logo {
   display: block;
   width: max-content;
-  margin-bottom: 24px;
 }
 .header__logo img {
   width: 52px;
@@ -834,22 +833,25 @@ html {
   display: none;
 }
 .btnRoute {
-  background-color: #0478572c;
-  width: 100px;
+  border: 1px solid #5b5b5b2c;
+  width: 120px;
   height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 4px;
   cursor: pointer;
+  letter-spacing: 1px;
 }
 .btnRouteActive {
-  background-color: #047857;
-  width: 100px;
+  background-color: #020a08c5;
+  width: 120px;
   height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 4px;
   cursor: pointer;
+  color: white;
+  letter-spacing: 1px;
 }

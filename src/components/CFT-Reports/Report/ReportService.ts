@@ -1,5 +1,5 @@
 import { requestFetch } from '../../../utils/requestFetch';
-import { ContractType } from '../types';
+import { ReportType } from '../types';
 
 export const getSearchBuiltIn = (value: string) => (
     requestFetch({url: `api/v1/built-in-category?search=${value}`, method: 'POST' })
@@ -9,7 +9,7 @@ export const getSearchForOther = (value: string, report_type: string, builtIn: s
     requestFetch({ url: `api/v1/fields?report_type=${report_type}&built_in_cateogry=${builtIn}&search=${value}`, method: 'POST' })
 );
 
-export const updateContract = (body: ContractType | string) => (
+export const updateContract = (body: ReportType | string) => (
     requestFetch({ 
         url: `api/v1/cft-definitions/update`, 
         method: 'POST',
@@ -17,7 +17,7 @@ export const updateContract = (body: ContractType | string) => (
      })
 );
 
-export const deleteContract = (body: ContractType | string) => (
+export const deleteReport = (body: ReportType | string) => (
     requestFetch({ 
         url: `api/v1/cft-definitions/remove`, 
         method: 'POST',
@@ -26,5 +26,5 @@ export const deleteContract = (body: ContractType | string) => (
 );
 
 export const addReport = (body: Body | string) => (
-    requestFetch({url: `api/v1/reports/add/cft-definition`, method: 'POST', body })
+    requestFetch({url: `api/v1/reports/update`, method: 'POST', body })
 );

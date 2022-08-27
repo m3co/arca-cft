@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { getSearchForOther, updateContract } from "../Contract/ContractService";
+import { getSearchForOther, updateContract } from "../Report/ReportService";
 import AsyncSelect from 'react-select/async';
 import { StylesConfig } from 'react-select';
-import { ContractType, Filter } from "../types";
+import { ReportType, Filter } from "../types";
 
 interface Props {
-  obj: ContractType;
+  obj: ReportType;
   valueField: string;
   miniObj: Filter;
 }
@@ -30,7 +30,7 @@ const SelectFieldFilters: React.FC<Props> = ({
     }
 
     const colourStyles: StylesConfig<any> = {
-        control: (styles) => ({ ...styles, 
+        control: (styles, {isDisabled}) => ({ ...styles, 
             backgroundColor: 'white', 
             fontSize: 14, 
             borderColor: '#E7EAEE',
@@ -44,6 +44,9 @@ const SelectFieldFilters: React.FC<Props> = ({
             ':active': {
                 borderColor: 'rgba(100, 116, 139, 0.81)',
             },
+            '& div': {
+                color: isDisabled ? 'rgb(51, 51, 51)' : 'rgb(51, 51, 51)',
+              },
         }),
         option: (styles, { data, isDisabled, isFocused, isSelected }) => {
           return {
@@ -80,7 +83,7 @@ const SelectFieldFilters: React.FC<Props> = ({
             <AsyncSelect 
             loadOptions={getModelsAPI} 
             styles={colourStyles} 
-            components={{ IndicatorSeparator:() => null }}
+            components={{ IndicatorSeparator:() => null, DropdownIndicator:() => null }}
             value={valueSelect}
             onChange={onChangeSelectedOption}
             isDisabled={true}

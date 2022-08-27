@@ -6,7 +6,7 @@ export interface Filter {
     ValueType?: string;
 }
 
-export interface ContractType {
+export interface ReportType {
     BuiltInCategory: string;
     ConstraintField: string;
     ContractType: string;
@@ -15,5 +15,5 @@ export interface ContractType {
     QuantityField: string;
     ReportType: string;
     Filters: Filter[];
-    Fields: any;
+    Fields: string[];
 }
