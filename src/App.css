@@ -21,50 +21,50 @@ time, mark, audio, video {
 /*fonts START*/
 @font-face {
   font-family: "Manrope";
-  src: url("../fonts/Manrope-Bold.woff");
-  src: local("Manrope Bold"), url("../fonts/Manrope-Bold.woff2") format("woff2"), url("../fonts/Manrope-Bold.woff") format("woff");
+  src: url("./fonts/Manrope-Bold.woff");
+  src: local("Manrope Bold"), url("./fonts/Manrope-Bold.woff2") format("woff2"), url("./fonts/Manrope-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: "Manrope";
-  src: url("../fonts/Manrope-Semibold.woff");
-  src: local("Manrope Semibold"), url("../fonts/Manrope-Semibold.woff2") format("woff2"), url("../fonts/Manrope-Semibold.woff") format("woff");
+  src: url("./fonts/Manrope-Semibold.woff");
+  src: local("Manrope Semibold"), url("./fonts/Manrope-Semibold.woff2") format("woff2"), url("./fonts/Manrope-Semibold.woff") format("woff");
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: "Manrope";
-  src: url("../fonts/Manrope-Regular.woff");
-  src: local("Manrope Regular"), url("../fonts/Manrope-Regular.woff2") format("woff2"), url("../fonts/Manrope-Regular.woff") format("woff");
+  src: url("./fonts/Manrope-Regular.woff");
+  src: local("Manrope Regular"), url("./fonts/Manrope-Regular.woff2") format("woff2"), url("./fonts/Manrope-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "Manrope";
-  src: url("../fonts/Manrope-Light.woff");
-  src: local("Manrope Light"), url("../fonts/Manrope-Light.woff2") format("woff2"), url("../fonts/Manrope-Light.woff") format("woff");
+  src: url("./fonts/Manrope-Light.woff");
+  src: local("Manrope Light"), url("./fonts/Manrope-Light.woff2") format("woff2"), url("./fonts/Manrope-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: "Manrope";
-  src: url("../fonts/Manrope-Thin.woff");
-  src: local("Manrope Thin"), url("../fonts/Manrope-Thin.woff2") format("woff2"), url("../fonts/Manrope-Thin.woff") format("woff");
+  src: url("./fonts/Manrope-Thin.woff");
+  src: local("Manrope Thin"), url("./fonts/Manrope-Thin.woff2") format("woff2"), url("./fonts/Manrope-Thin.woff") format("woff");
   font-weight: 100;
   font-style: normal;
 }
 @font-face {
   font-family: "Manrope";
-  src: url("../fonts/Manrope-Medium.woff");
-  src: local("Manrope Medium"), url("../fonts/Manrope-Medium.woff2") format("woff2"), url("../fonts/Manrope-Medium.woff") format("woff");
+  src: url("./fonts/Manrope-Medium.woff");
+  src: local("Manrope Medium"), url("./fonts/Manrope-Medium.woff2") format("woff2"), url("./fonts/Manrope-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
   font-family: "Manrope";
-  src: url("../fonts/Manrope-ExtraBold.woff");
-  src: local("Manrope ExtraBold"), url("../fonts/Manrope-ExtraBold.woff2") format("woff2"), url("../fonts/Manrope-ExtraBold.woff") format("woff");
+  src: url("./fonts/Manrope-ExtraBold.woff");
+  src: local("Manrope ExtraBold"), url("./fonts/Manrope-ExtraBold.woff2") format("woff2"), url("./fonts/Manrope-ExtraBold.woff") format("woff");
   font-weight: 800;
   font-style: normal;
 }
@@ -98,7 +98,7 @@ html {
   height: auto;
 }
 
-body {
+.App {
   font-family: "Manrope", sans-serif !important;
   font-weight: normal;
   height: 100%;
@@ -114,20 +114,6 @@ body {
   margin: 0 auto;
   overflow-x: hidden;
 }
-
-main {
-  width: 100%;
-  height: auto;
-}
-
-.content {
-  flex: 1;
-}
-
-/*general END*/
-/*variables*/
-/*variables end*/
-/*primary*/
 .btn-primary {
   cursor: pointer;
   position: relative;
@@ -611,6 +597,15 @@ main {
   line-height: 17px;
   color: #191D23;
 }
+.select-header2 {
+  font-size: 14px;
+  border-radius: 4px;
+}
+.select-header2:hover {
+  transition: all 0.3s;
+  border: 1px solid #047857;
+  color: #047857;
+}
 .select-header[data-value=""] {
   border: 1px solid #E7EAEE;
 }
@@ -727,7 +722,7 @@ main {
   pointer-events: none;
   position: fixed;
   z-index: 100;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -80%) scale(0.9);
   min-width: 400px;
@@ -829,12 +824,9 @@ main {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
+  z-index: 5;
 }
 
 .hidden {
   display: none;
 }
-
-/*Modal END*/
-
-/*# sourceMappingURL=style.css.map */
