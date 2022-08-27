@@ -11,7 +11,7 @@ import SelectQuantity from '../commons/SelectQuantity';
 import SelectReportType from '../commons/SelectReportType';
 import SelectValueType from '../commons/SelectValueType';
 import { ReportType } from '../types';
-import { deleteReport, addReport } from './ReportService';
+import { deleteReport, updateReport, addDefinition } from './ReportService';
 
 interface Props {
     reportType: string;
@@ -23,7 +23,7 @@ interface Props {
     getReports: () => void;
 }
 
-const Contract: React.FC<Props> = ({
+const Report: React.FC<Props> = ({
     reportType,
     contractType,
     BuiltInCategory,
@@ -33,9 +33,9 @@ const Contract: React.FC<Props> = ({
     getReports,
 }) => {
     const [isShow, setShow] = useState(false);
-    const [valueKeynote, setValueKeynote] = useState({value:'', label: ''});
-    const [valueConstraint, setValueConstraint] = useState({value:'', label: ''});
-    const [valueQuantity, setValueQuantity] = useState({value:'', label: ''});
+    const [valueKeynote, setValueKeynote] = useState({value: obj.KeynoteField, label: obj.KeynoteField});
+    const [valueConstraint, setValueConstraint] = useState({value: obj.ConstraintField, label: obj.ConstraintField});
+    const [valueQuantity, setValueQuantity] = useState({value: obj.QuantityField, label: obj.QuantityField});
 
     const deleteRep = () => {
         deleteReport(JSON.stringify(isActiveFormDel))
@@ -55,9 +55,9 @@ const Contract: React.FC<Props> = ({
         obj.ConstraintField = valueConstraint.value;
         obj.QuantityField = valueQuantity.value;
 
-        addReport(JSON.stringify(obj))
+        addDefinition(JSON.stringify(obj))
         .then(() => getReports());
-    }
+    } 
 
     return (
         <>
@@ -98,6 +98,7 @@ const Contract: React.FC<Props> = ({
                 <div className="hidden-table">
                     {obj.Filters.map((miniObj: any, index: number) => {
                         let keyValue = Date.now() + index;
+                        //let keyValue = obj.Filters.length - index
                         return (
                             <div className="hidden-row" key={keyValue}>
                                 <div className="hidden-cell">
@@ -139,4 +140,4 @@ const Contract: React.FC<Props> = ({
     );
 }
 
-export default Contract;
+export default React.memo(Report);

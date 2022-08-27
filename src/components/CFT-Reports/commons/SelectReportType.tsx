@@ -24,7 +24,7 @@ const SelectReportType: React.FC<Props> = ({
             fontSize: 14, 
             borderColor: '#E7EAEE',
             cursor: 'pointer',
-            width: 200,
+            width: 150,
             ':hover': {
                 borderColor: '#047857',
                 transition: 'all 0.3s',
@@ -68,7 +68,7 @@ const SelectReportType: React.FC<Props> = ({
     };
 
     return (
-        <div className="select">
+        <div>
           <Select 
           options={options} 
           styles={colourStyles} 

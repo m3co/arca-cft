@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getSearchForOther, updateContract } from "../Report/ReportService";
+import { getSearchForOther, updateReport } from "../Report/ReportService";
 import Select from 'react-select';
 import { StylesConfig } from 'react-select';
 import { ReportType } from "../types";
@@ -57,6 +57,8 @@ const SelectQuantity: React.FC<Props> = ({
 
     const onChangeSelectedOption = (e: any) => {
         setValueQuantity(e);
+        obj.QuantityField = e.label;
+        updateReport(JSON.stringify(obj));
     };
 
     const formatted = obj.Fields.map((l: string)=> ({

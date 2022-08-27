@@ -19,12 +19,16 @@ export const updateContract = (body: ReportType | string) => (
 
 export const deleteReport = (body: ReportType | string) => (
     requestFetch({ 
-        url: `api/v1/cft-definitions/remove`, 
+        url: `api/v1/reports/remove`, 
         method: 'POST',
         body: body
      })
 );
 
-export const addReport = (body: Body | string) => (
+export const updateReport = (body: Body | string) => (
     requestFetch({url: `api/v1/reports/update`, method: 'POST', body })
+);
+
+export const addDefinition = (body: Body | string) => (
+    requestFetch({url: `api/v1/reports/add/cft-definitions`, method: 'POST', body })
 );

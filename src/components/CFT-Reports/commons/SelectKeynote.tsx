@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getSearchForOther, updateContract } from "../Report/ReportService";
+import { getSearchForOther, updateContract, updateReport } from "../Report/ReportService";
 import Select from 'react-select';
 import { StylesConfig } from 'react-select';
 import { ReportType } from "../types";
@@ -58,6 +58,8 @@ const SelectKeynote: React.FC<Props> = ({
 
     const onChangeSelectedOption = (e: any) => {
         setValueKeynote(e);
+        obj.KeynoteField = e.label;
+        updateReport(JSON.stringify(obj));
     };
 
     const formatted = obj.Fields.map((l: string)=> ({

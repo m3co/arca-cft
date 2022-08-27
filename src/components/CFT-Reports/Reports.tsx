@@ -9,16 +9,15 @@ const Reports = () => {
     const [allReports, setAllReports] = useState<{reports: ReportType[] | null, isLoad: boolean}>({ reports: null, isLoad: false });
     const [isActiveFormDel, setActiveFormDel] = useState<ReportType | null>(null);
 
-    const getReports = () => {
+    const getReports = React.useCallback(() => {
         getAllReports()
         .then(res => setAllReports({ reports: res, isLoad: true }))
         .catch(() => setAllReports({ ...allReports, isLoad: true }));
-    }
-    console.log(allReports.reports)
+    }, [allReports.isLoad]);
   
     useEffect(() => {
         getReports();
-    }, [allReports.isLoad]);
+    }, [getReports]);
 
     return (
         <div>
@@ -29,8 +28,14 @@ const Reports = () => {
             isActiveFormDel={isActiveFormDel} 
             setActiveFormDel={setActiveFormDel} 
             />
+            <div 
+            className={
+            isActiveFormDel ? 
+            'modal-window__backdrop' : 
+            'modal-window__backdrop hidden'}>
+            </div>
         </div>
     );
 }
 
-export default Reports;
+export default React.memo(Reports);

@@ -21,19 +21,19 @@ const Table: React.FC<Props> = ({
             <div className="table">
                 <div className="table__wrp">
                     <div className="table__header">
-                        <div className="table__part" data-name="Contract">
+                        <div className="table__part" data-name="Contract" style={{maxWidth: 180}}>
                             <div className="name">Contract Type</div>
                         </div>
-                        <div className="table__part" data-name="Report">
+                        <div className="table__part" data-name="Report" style={{maxWidth: 120}}>
                             <div className="name">Report Type</div>
                         </div>
-                        <div className="table__part" data-name="BuiltIn">
+                        <div className="table__part" data-name="BuiltIn" style={{maxWidth: 170}}>
                             <div className="name">BuiltIn Category</div>
                         </div>
-                        <div className="table__part" data-name="Keynote">
+                        <div className="table__part" data-name="Keynote" style={{maxWidth: 150}}>
                             <div className="name">Keynote Field</div>
                         </div>
-                        <div className="table__part" data-name="Constraint">
+                        <div className="table__part" data-name="Constraint" style={{maxWidth: 160}}>
                             <div className="name">Constraint Field</div>
                         </div>
                         <div className="table__part" data-name="Quantity">
@@ -42,8 +42,8 @@ const Table: React.FC<Props> = ({
                         <div className="table__part-end" data-name="func"></div>
                     </div>
                 </div>
-                {allReports.reports?.map((obj:ReportType) =>
-                    <Report reportType={obj.ReportType} key={obj.ID} contractType={obj.ContractType}
+                {allReports.reports?.map((obj:ReportType, i: number) =>
+                    <Report reportType={obj.ReportType} key={/*allReports.reports ? allReports.reports?.length - i : */obj.ID} contractType={obj.ContractType}
                     BuiltInCategory={obj.BuiltInCategory} obj={obj}
                     setActiveFormDel={setActiveFormDel} isActiveFormDel={isActiveFormDel}
                     getReports={getReports}
