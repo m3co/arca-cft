@@ -10,7 +10,7 @@ import SelectKeynote from '../commons/SelectKeynote';
 import SelectQuantity from '../commons/SelectQuantity';
 import SelectReportType from '../commons/SelectReportType';
 import SelectValueType from '../commons/SelectValueType';
-import { ContractType } from '../types';
+import { ContractType, Filter } from '../types';
 import { deleteContract, updateContract } from './ContractService';
 
 interface Props {

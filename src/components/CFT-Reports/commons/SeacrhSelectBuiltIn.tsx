@@ -103,7 +103,7 @@ const SearchSelectBuiltIn: React.FC<Props> = ({
         />
       </div>
     );
-  };
+};
 
-  export default SearchSelectBuiltIn;
+export default SearchSelectBuiltIn;
   

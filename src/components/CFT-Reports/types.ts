@@ -1,9 +1,9 @@
 export interface Filter {
     Command: string;
-    Comparator?: string;
-    Field?: string;
-    Value?: string;
-    ValueType?: string;
+    Comparator: string;
+    Field: string;
+    Value: string;
+    ValueType: string;
 }
 
 export interface ReportType {

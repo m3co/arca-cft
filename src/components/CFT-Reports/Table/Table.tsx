@@ -43,7 +43,7 @@ const Table: React.FC<Props> = ({
                     </div>
                 </div>
                 {allReports.reports?.map((obj:ReportType, i: number) =>
-                    <Report reportType={obj.ReportType} key={/*allReports.reports ? allReports.reports?.length - i : */obj.ID} contractType={obj.ContractType}
+                    <Report reportType={obj.ReportType} key={obj.ID} contractType={obj.ContractType}
                     BuiltInCategory={obj.BuiltInCategory} obj={obj}
                     setActiveFormDel={setActiveFormDel} isActiveFormDel={isActiveFormDel}
                     getReports={getReports}

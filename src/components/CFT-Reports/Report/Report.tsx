@@ -10,7 +10,7 @@ import SelectKeynote from '../commons/SelectKeynote';
 import SelectQuantity from '../commons/SelectQuantity';
 import SelectReportType from '../commons/SelectReportType';
 import SelectValueType from '../commons/SelectValueType';
-import { ReportType } from '../types';
+import { Filter, ReportType } from '../types';
 import { deleteReport, updateReport, addDefinition } from './ReportService';
 
 interface Props {
@@ -96,9 +96,8 @@ const Report: React.FC<Props> = ({
                     <div className="name">Filters:</div>
                 </div>
                 <div className="hidden-table">
-                    {obj.Filters.map((miniObj: any, index: number) => {
+                    {obj.Filters.map((miniObj: Filter, index: number) => {
                         let keyValue = Date.now() + index;
-                        //let keyValue = obj.Filters.length - index
                         return (
                             <div className="hidden-row" key={keyValue}>
                                 <div className="hidden-cell">

@@ -72,8 +72,9 @@ const SelectConstraint: React.FC<Props> = ({
             options={formatted} 
             styles={colourStyles} 
             components={{ IndicatorSeparator:() => null }}
-            value={valueConstraint}
+            value={valueConstraint.value ? valueConstraint : null}
             onChange={onChangeSelectedOption}
+            placeholder='Constraint Field'
             />
         </div>
     );

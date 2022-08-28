@@ -72,8 +72,9 @@ const SelectKeynote: React.FC<Props> = ({
             options={formatted} 
             styles={colourStyles} 
             components={{ IndicatorSeparator:() => null }}
-            value={valueKeynote}
+            value={valueKeynote.value ? valueKeynote : null}
             onChange={onChangeSelectedOption}
+            placeholder='Keynote Field'
             />
         </div>
     );

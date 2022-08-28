@@ -71,8 +71,9 @@ const SelectQuantity: React.FC<Props> = ({
             options={formatted} 
             styles={colourStyles} 
             components={{ IndicatorSeparator:() => null }}
-            value={valueQuantity}
+            value={valueQuantity.value ? valueQuantity : null}
             onChange={onChangeSelectedOption}
+            placeholder='Quantity Field'
             />
         </div>
     );

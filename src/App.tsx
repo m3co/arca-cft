@@ -5,14 +5,29 @@ import Reports from './components/CFT-Reports/Reports';
 import ThirdPage from './components/CFT-ThirdPage/ThirdPage';
 import Logo from './images/logo.svg';
 
-
 const App = () => {
-  const [routes, setRoutes] = React.useState(['Reports', 'Definitions', 'Third Page']);
-  const [activeRoute, setActiveRoute] = React.useState('Definitions');
+  const [activeRoute, setActiveRoute] = React.useState('CFT-Definitions');
+
+  const urlDefinitions = '/definitions';
+  const urlReports= '/reports';
+  const urlCFTs= '/cfts';
+
+  React.useEffect(() => {
+    if(activeRoute === 'CFT-Definitions') {
+      window.history.replaceState(null, '', urlDefinitions);
+    }
+    if(activeRoute === 'Reports') {
+      window.history.replaceState(null, '', urlReports);
+    }
+    if(activeRoute === 'CFTs') {
+      window.history.replaceState(null, '', urlCFTs);
+    }
+    
+  }, [activeRoute]);
+
   return (
-    <div className="App" style={{display: /*activeRoute === 'Definitions' ? 'flex' : */'block'}}>
-                  
-      <div style={{display: 'flex', justifyContent: 'space-between', /*width: 800*/marginBottom: 24}}>
+    <div className="App" style={{display: 'block'}}>
+      <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: 24}}>
         <div>
             <a href="/" className="header__logo">
                 <img src={Logo} alt='logo'/>
@@ -20,8 +35,8 @@ const App = () => {
         </div>
         <div style={{display: 'flex', justifyContent: 'space-between', width: 450, alignItems: 'center', margin: '0 auto'}}>
           <div 
-          className={activeRoute === 'Definitions' ? 'btnRouteActive' : 'btnRoute'} 
-          onClick={() => setActiveRoute('Definitions')}>
+          className={activeRoute === 'CFT-Definitions' ? 'btnRouteActive' : 'btnRoute'} 
+          onClick={() => setActiveRoute('CFT-Definitions')}>
             <span>Definitons</span>
           </div>
           <div 
@@ -31,17 +46,16 @@ const App = () => {
             <span>Reports</span>
           </div>
           <div 
-          className={activeRoute === 'Third Page' ? 'btnRouteActive' : 'btnRoute'}
-          onClick={() => setActiveRoute('Third Page')}
+          className={activeRoute === 'CFTs' ? 'btnRouteActive' : 'btnRoute'}
+          onClick={() => setActiveRoute('CFTs')}
           >
-            <span>Third Page</span>
+            <span>CFTs</span>
           </div>
         </div>
-       
       </div>
-      {activeRoute === 'Definitions' ? <Definitions /> : null}
+      {activeRoute === 'CFT-Definitions' ? <Definitions /> : null}
       {activeRoute === 'Reports' ? <Reports /> : null}
-      {activeRoute === 'Third Page' ? <ThirdPage /> : null}
+      {activeRoute === 'CFTs' ? <ThirdPage /> : null}
     </div>
   );
 }

@@ -9,7 +9,7 @@ const Header: React.FC = ({
         <div className='headerReports' style={{marginBottom: 30}}>
             <div className="header__wrp-info">
                 <div className="header__wrp-titles">
-                    <h1>CFT Third Page</h1>
+                    <h1>CFTs</h1>
                     <h2>Manage the contract-template details</h2>
                 </div>
             </div>
