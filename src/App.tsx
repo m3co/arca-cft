@@ -1,54 +1,61 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
-import Header from './components/Header/Header';
-import Table from './components/Table/Table';
-import { getAllContracts } from './components/Table/TableService';
-import { ContractType } from './components/types';
+import Definitions from './components/CFT-Definitions/Definitions';
+import Reports from './components/CFT-Reports/Reports';
+import CFTs from './components/CFT-ThirdPage/CFTs';
+import Logo from './images/logo.svg';
 
 const App = () => {
-  const [allContracts, setAllContracts] = useState<{contracts: ContractType[] | null, isLoad: boolean}>({ contracts: null, isLoad: false });
-  const [isActiveFormAdd, setActiveFormAdd] = useState(false);
-  const [isActiveFormDel, setActiveFormDel] = useState<ContractType | null>(null);
-  const [isActiveFormAddFilter, setActiveFormAddFilter] = useState<ContractType | null>(null);
-  const [isActiveFormDelFilter, setActiveFormDelFilter] = useState<ContractType | null>(null);
+  const [activeRoute, setActiveRoute] = React.useState('CFT-Definitions');
 
-  const getContracts = () => {
-      getAllContracts()
-      .then(res => setAllContracts({ contracts: res, isLoad: true }))
-      .catch(() => setAllContracts({ ...allContracts, isLoad: true }));
-  }
+  const urlDefinitions = '/definitions';
+  const urlReports= '/reports';
+  const urlCFTs= '/cfts';
 
-  useEffect(() => {
-      getContracts();
-  }, [allContracts.isLoad]);
+  React.useEffect(() => {
+    if(activeRoute === 'CFT-Definitions') {
+      window.history.replaceState(null, '', urlDefinitions);
+    }
+    if(activeRoute === 'Reports') {
+      window.history.replaceState(null, '', urlReports);
+    }
+    if(activeRoute === 'CFTs') {
+      window.history.replaceState(null, '', urlCFTs);
+    }
+    
+  }, [activeRoute]);
 
   return (
-    <div className="App">
-      <Header 
-      getContracts={getContracts} 
-      isActiveFormAdd={isActiveFormAdd} 
-      setActiveFormAdd={setActiveFormAdd}
-      />
-      <Table 
-      allContracts={allContracts} 
-      setAllContracts={setAllContracts} 
-      getContracts={getContracts}
-      isActiveFormDel={isActiveFormDel} 
-      setActiveFormDel={setActiveFormDel} 
-      isActiveFormAddFilter={isActiveFormAddFilter}
-      setActiveFormAddFilter={setActiveFormAddFilter} 
-      isActiveFormDelFilter={isActiveFormDelFilter} 
-      setActiveFormDelFilter={setActiveFormDelFilter}
-      />
-      <div 
-      className={
-      isActiveFormAdd || 
-      isActiveFormDel || 
-      isActiveFormAddFilter || 
-      isActiveFormDelFilter ? 
-      'modal-window__backdrop' : 
-      'modal-window__backdrop hidden'}>
+    <div className="App" style={{display: 'block'}}>
+      <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: 24}}>
+        <div>
+            <a href="/" className="header__logo">
+                <img src={Logo} alt='logo'/>
+            </a>
+        </div>
+        <div style={{display: 'flex', justifyContent: 'space-between', width: 450, alignItems: 'center', margin: '0 auto'}}>
+          <div 
+          className={activeRoute === 'CFT-Definitions' ? 'btnRouteActive' : 'btnRoute'} 
+          onClick={() => setActiveRoute('CFT-Definitions')}>
+            <span>Definitons</span>
+          </div>
+          <div 
+          className={activeRoute === 'Reports' ? 'btnRouteActive' : 'btnRoute'} 
+          onClick={() => setActiveRoute('Reports')}
+          >
+            <span>Reports</span>
+          </div>
+          <div 
+          className={activeRoute === 'CFTs' ? 'btnRouteActive' : 'btnRoute'}
+          onClick={() => setActiveRoute('CFTs')}
+          >
+            <span>CFTs</span>
+          </div>
+        </div>
       </div>
+      {activeRoute === 'CFT-Definitions' ? <Definitions /> : null}
+      {activeRoute === 'Reports' ? <Reports /> : null}
+      {activeRoute === 'CFTs' ? <CFTs /> : null}
     </div>
   );
 }
