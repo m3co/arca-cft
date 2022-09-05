@@ -112,7 +112,7 @@ html {
   background-color: #FFFFFF;
   padding: 12px 40px 48px;
   margin: 0 auto;
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
 }
 .btn-primary {
   cursor: pointer;
@@ -465,7 +465,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   border-bottom: 1px solid #E7EAEE;
 }
 .table__row-part {
@@ -778,7 +778,7 @@ html {
   line-height: 25px;
   text-align: center;
   color: #64748B;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 }
 .modal-window form {
   width: auto;
@@ -842,6 +842,7 @@ html {
   border-radius: 4px;
   cursor: pointer;
   letter-spacing: 1px;
+  color: rgba(0, 0, 0, 0.699);
 }
 .btnRouteActive {
   background-color: #020a08c5;
@@ -854,4 +855,5 @@ html {
   cursor: pointer;
   color: white;
   letter-spacing: 1px;
+  font-weight: 500;
 }

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import '../../../App.css';
-import InputCommand from '../commons/InputCommand';
 import InputValue from '../commons/InputValue';
 import SearchSelectBuiltIn from '../commons/SeacrhSelectBuiltIn';
 import SelectComparator from '../commons/SelectComparator';
@@ -10,10 +9,15 @@ import SelectKeynote from '../commons/SelectKeynote';
 import SelectQuantity from '../commons/SelectQuantity';
 import SelectReportType from '../commons/SelectReportType';
 import SelectValueType from '../commons/SelectValueType';
-import { ContractType, Filter } from '../types';
-import { deleteContract, updateContract } from './ContractService';
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { CFTType, Filter } from '../types';
+import { deleteCFT, updateCFT } from '../CFTsService';
+import InputPhase from '../commons/InputPhase';
+import InputFamily from '../commons/InputFamily';
+import InputType from '../commons/InputType';
+import SearchSelectKey from '../commons/SearchSelectKey';
+import CopyToClipboard from 'react-copy-to-clipboard';
 import iconCopy from '../../../images/paste.png';
+import InputCommand from '../commons/InputCommand';
 
 interface Props {
     reportType: string;
@@ -22,17 +26,21 @@ interface Props {
     ConstraintField: string;
     QuantityField: string;
     KeynoteField: string;
-    obj: ContractType;
-    isActiveFormDel: ContractType | null;
+    PhaseField: string;
+    FamilyField: string;
+    TypeField: string;
+    KeyField: string;
+    obj: CFTType;
+    isActiveFormDel: CFTType | null;
     setActiveFormDel: Function;
-    getContracts: () => void;
-    isActiveFormAddFilter: ContractType | null;
+    getCFTs: () => void;
+    isActiveFormAddFilter: CFTType | null;
     setActiveFormAddFilter: Function;
     setActiveFormDelFilter: Function;
     isActiveFormDelFilter: any;
 }
 
-const Contract: React.FC<Props> = ({
+const CFT: React.FC<Props> = ({
     reportType,
     contractType,
     BuiltInCategory,
@@ -42,29 +50,33 @@ const Contract: React.FC<Props> = ({
     obj,
     isActiveFormDel,
     setActiveFormDel,
-    getContracts,
+    getCFTs,
     isActiveFormAddFilter,
     setActiveFormAddFilter,
     setActiveFormDelFilter,
-    isActiveFormDelFilter
+    isActiveFormDelFilter,
+    PhaseField,
+    FamilyField,
+    TypeField,
+    KeyField
 }) => {
     const [isShow, setShow] = useState(false);
     const [nameFilter, setNameFilter] = useState('');
     const [copiedContractName, setCopiedContractName] = useState(false);
 
     const deleteCont = () => {
-        deleteContract(JSON.stringify(isActiveFormDel))
-        .then(() => getContracts());
+        deleteCFT(JSON.stringify(isActiveFormDel))
+        .then(() => getCFTs());
         setActiveFormDel(null);
     }
    
     const addFilter = () => {
-        const body = {
+        /*const body = {
             "Command": nameFilter,
         };
-        isActiveFormAddFilter?.Filters.push(body);
-        updateContract(JSON.stringify(isActiveFormAddFilter))
-        .then(() => getContracts());
+        isActiveFormAddFilter?.Filters.push(body);*/
+        updateCFT(JSON.stringify(isActiveFormAddFilter))
+        .then(() => getCFTs());
         setActiveFormAddFilter(null);
         setNameFilter('');
     }
@@ -72,8 +84,8 @@ const Contract: React.FC<Props> = ({
     const deleteFilter = () => {
         const obj = isActiveFormDelFilter[0];
         obj.Filters.splice(isActiveFormDelFilter[1], 1);
-        updateContract(JSON.stringify(isActiveFormDelFilter[0]))
-        .then(() => getContracts())
+        updateCFT(JSON.stringify(isActiveFormDelFilter[0]))
+        .then(() => getCFTs())
         .then(() => setActiveFormDelFilter(null));
     }
 
@@ -96,6 +108,11 @@ const Contract: React.FC<Props> = ({
                 <SelectKeynote valueField={KeynoteField} obj={obj}/>
                 <SelectConstraint valueField={ConstraintField} obj={obj}/>
                 <SelectQuantity valueField={QuantityField} obj={obj}/>
+                <div style={{display: 'flex', marginLeft: 260, width: '100%', marginBottom: 15}}>
+                <InputPhase valueField={PhaseField} obj={obj}/>
+                <SearchSelectKey valueField={KeyField} obj={obj}/>
+                <InputFamily valueField={FamilyField} obj={obj}/>
+                <InputType valueField={TypeField} obj={obj}/>
                 <div className="table__row-part-end" data-name="func" onClick={() => setActiveFormDel(obj)}>
                     <button type="button" className="btn-remove js-modal" data-modal="#modal_remove">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -103,11 +120,14 @@ const Contract: React.FC<Props> = ({
                         </svg>
                     </button>
                 </div>
+                </div>
+
+
             </div>
             <div className={isShow ? "table__hidden-row open" : 'table__hidden-row'}>
                 <div className="info-box">
                     <div className="name">Filters:</div>
-                    <button type="button"
+                    {/*<button type="button"
                     className="btn-primary js-modal" 
                     data-modal="#modal_add" 
                     onClick={() => setActiveFormAddFilter(obj)}
@@ -117,7 +137,7 @@ const Contract: React.FC<Props> = ({
                             <path d="M3.33325 8H12.6666" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                         Add
-                    </button>
+                    </button>*/}
                 </div>
                 <div className="hidden-table">
                     {obj.Filters.map((miniObj: any, index: number) => {
@@ -138,7 +158,7 @@ const Contract: React.FC<Props> = ({
                                 </div>
                                 <div className="hidden-cell">
                                     <SelectValueType  valueField={miniObj.ValueType} obj={obj} miniObj={miniObj}/>
-                                    <div className="select-remove">
+                                    {/*<div className="select-remove">
                                         <button type="button" 
                                         className="btn-remove js-modal" 
                                         data-modal="#modal_remove"
@@ -148,7 +168,7 @@ const Contract: React.FC<Props> = ({
                                                 <path d="M15.6464 15.648C16.1157 15.1787 16.1157 14.4178 15.6464 13.9485L9.69939 8.00082L15.648 2.05155C16.1173 1.58223 16.1173 0.821313 15.648 0.351993C15.1788 -0.117327 14.4179 -0.117327 13.9487 0.351992L8 6.30126L2.05134 0.35199C1.58207 -0.11733 0.821226 -0.11733 0.351954 0.35199C-0.117318 0.82131 -0.117318 1.58223 0.351954 2.05155L6.30061 8.00082L0.353586 13.9485C-0.115686 14.4178 -0.115686 15.1787 0.353586 15.648C0.822858 16.1173 1.5837 16.1173 2.05297 15.648L8 9.70038L13.947 15.648C14.4163 16.1173 15.1771 16.1173 15.6464 15.648Z" fill="#A2A2A2"/>
                                             </svg>
                                         </button>
-                                    </div>
+                                    </div>*/}
                                 </div>
                             </div>
                         )
@@ -178,12 +198,13 @@ const Contract: React.FC<Props> = ({
                         </svg>
                     </button>
                     <div className="modal-title">Add new Filter</div>
-                    <div className="modal-comment">Please, enter the command</div>
+                    <div className="modal-comment">Please, enter the name of filter</div>
                     <form id="addContract">
                         <div className="input-box">
                             <input type="text" 
                             className="input-style" 
-                            placeholder='Command'
+                            required 
+                            placeholder='Enter the name of filter'
                             value={nameFilter}
                             onChange={(e) => setNameFilter(e.target.value)}
                             />
@@ -197,6 +218,7 @@ const Contract: React.FC<Props> = ({
                             <button 
                             type="button" 
                             className="btn btn-secondary modal-close"
+                            disabled={nameFilter === ''}
                             onClick={addFilter}
                             >
                                 Add
@@ -224,4 +246,4 @@ const Contract: React.FC<Props> = ({
     );
 }
 
-export default Contract;
+export default CFT;

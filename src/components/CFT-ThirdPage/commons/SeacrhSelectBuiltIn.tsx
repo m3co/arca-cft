@@ -1,39 +1,55 @@
 import React, { useState } from "react";
-import { getSearchForOther, updateContract } from "../Contract/ContractService";
+import { getSearchBuiltIn, updateCFT } from "../CFTsService";
 import AsyncSelect from 'react-select/async';
 import { StylesConfig } from 'react-select';
-import { ContractType } from "../types";
+import { CFTType } from "../types";
+import Tooltip from '@mui/material/Tooltip';
 import sleep from "../../../utils/sleep";
 
 interface Props {
-  obj: ContractType;
-  valueField: string;
+    obj: CFTType;
+    valueField: string;
 }
 
-const SelectKeynote: React.FC<Props> = ({
+const SearchSelectBuiltIn: React.FC<Props> = ({
     valueField,
     obj
 }) => {
     const [valueSelect, setValueSelect] = useState({value: valueField, label: valueField});
-
+    
     const getModelsAPI = async (input: string) => {
         if (!input) {
             return Promise.resolve({ options: [] });
         }
-        const json: any = await sleep(getSearchForOther, input, obj.ReportType, obj.BuiltInCategory);
+
+        const json: any = await sleep(getSearchBuiltIn, input);
         const formatted = json.map((l: string)=> ({
             value: l,
             label: l
         }))
         return formatted;
     }
-
+      
+    const valueForSelectWithTooltip = {
+        value: valueSelect.value,
+        label: (
+            <Tooltip placement="top" title={valueSelect.label} arrow>
+                <span style={{overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',width: '95%',position: 'absolute', top: 5}}>
+                    {valueSelect.label}
+                </span>
+            </Tooltip>
+        )
+    }
+    
     const colourStyles: StylesConfig<any> = {
-        control: (styles) => ({ ...styles, 
+        control: (styles, { isDisabled}) => ({ ...styles, 
             backgroundColor: 'white', 
             fontSize: 14, 
             borderColor: '#E7EAEE',
             cursor: 'pointer',
+            '& span': {
+                color: isDisabled ? 'rgb(51, 51, 51)' : 'rgb(51, 51, 51)',
+            },
             width: 200,
             ':hover': {
                 borderColor: '#047857',
@@ -63,28 +79,34 @@ const SelectKeynote: React.FC<Props> = ({
             transition: 'all .2s ease',
             transform: state.isFocused ? 'rotate(180deg)' : undefined
         }),
-        input: (styles) => ({ ...styles}),
+        input: (styles) => ({
+            ...styles,
+        }),
         placeholder: (styles) => ({ ...styles}),
-        singleValue: (styles, { data }) => ({ ...styles }),
+        singleValue: (styles) => ({ 
+            ...styles,
+        }),
     };
 
     const onChangeSelectedOption = (e: any) => {
         setValueSelect(e);
-        obj.KeynoteField = e.label;
-        updateContract(JSON.stringify(obj));
+        obj.BuiltInCategory = e.label;
+        updateCFT(JSON.stringify(obj));
     };
 
     return (
-        <div className="select">
-            <AsyncSelect 
-            loadOptions={getModelsAPI} 
-            styles={colourStyles} 
-            components={{ IndicatorSeparator:() => null }}
-            value={valueSelect}
-            onChange={onChangeSelectedOption}
-            />
-        </div>
+      <div className="select">
+        <AsyncSelect 
+        loadOptions={getModelsAPI} 
+        styles={colourStyles} 
+        components={{ IndicatorSeparator:() => null, DropdownIndicator:() => null }}
+        value={valueForSelectWithTooltip}
+        onChange={onChangeSelectedOption}
+        isDisabled={true}
+        />
+      </div>
     );
-};
+  };
 
-export default SelectKeynote;
+  export default SearchSelectBuiltIn;
+  

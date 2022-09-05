@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import CopyToClipboard from 'react-copy-to-clipboard';
 import '../../../App.css';
 import InputCommand from '../commons/InputCommand';
 import InputValue from '../commons/InputValue';
@@ -12,6 +13,7 @@ import SelectReportType from '../commons/SelectReportType';
 import SelectValueType from '../commons/SelectValueType';
 import { Filter, ReportType } from '../types';
 import { deleteReport, updateReport, addDefinition } from './ReportService';
+import iconCopy from '../../../images/paste.png';
 
 interface Props {
     reportType: string;
@@ -36,6 +38,7 @@ const Report: React.FC<Props> = ({
     const [valueKeynote, setValueKeynote] = useState({value: obj.KeynoteField, label: obj.KeynoteField});
     const [valueConstraint, setValueConstraint] = useState({value: obj.ConstraintField, label: obj.ConstraintField});
     const [valueQuantity, setValueQuantity] = useState({value: obj.QuantityField, label: obj.QuantityField});
+    const [copiedContractName, setCopiedContractName] = useState(false);
 
     const deleteRep = () => {
         deleteReport(JSON.stringify(isActiveFormDel))
@@ -63,7 +66,10 @@ const Report: React.FC<Props> = ({
         <>
             <div className="table__row">
                 <div className="table__row-part" data-name="Contract1">
-                    <div className="name">{contractType}</div>
+                    <CopyToClipboard text={contractType} onCopy={() => setCopiedContractName(true)}>
+                        <div className="name" style={{position: 'relative'}}><img src={iconCopy} style={{marginBottom: '-2px', marginRight: 4}} />{contractType}</div>
+                    </CopyToClipboard>
+                    {copiedContractName ? <span style={{color: 'red', position: 'absolute', fontSize: 10, bottom: 0}}>Copied</span> : null}
                     <span onClick={()=>setShow(!isShow)} style={{padding: 10}}>
                         <svg className={!isShow ? 'svg' : 'svg rotate'} width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 1.45837L5 5.45837L9 1.45837" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -83,12 +89,12 @@ const Report: React.FC<Props> = ({
                     </button>
                 </div>
                 <button 
-                className={valueKeynote.value === '' || valueConstraint.value === '' || valueQuantity.value === '' ? 'btn-primary disabled': 'btn-primary'}
+                className={valueKeynote.value === '' || valueConstraint.value === '' || valueQuantity.value === '' || obj.Processed === true ? 'btn-primary disabled': 'btn-primary'}
                 style={{height: 30, fontSize: 14}}
                 onClick={postReport} 
-                disabled={valueKeynote.value === '' || valueConstraint.value === '' || valueQuantity.value === ''}
+                disabled={valueKeynote.value === '' || valueConstraint.value === '' || valueQuantity.value === '' || obj.Processed === true}
                 >
-                    POST
+                    Post
                 </button>
             </div>
             <div className={isShow ? "table__hidden-row open" : 'table__hidden-row'}>
@@ -128,7 +134,7 @@ const Report: React.FC<Props> = ({
                         </svg>
                     </button>
                     <div className="modal-title">Delete</div>
-                    <div className="modal-comment">Are you sure?</div>
+                    <div className="modal-comment">Are you sure you want to delete <br />{isActiveFormDel?.ContractType}?</div>
                     <div className="modal-buttons">
                         <button type="button" className="btn btn-primary modal-close" onClick={() => setActiveFormDel(null)}>Cancel</button>
                         <button type="button" className="btn btn-secondary modal-close" onClick={deleteRep}>Delete</button>

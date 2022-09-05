@@ -4,6 +4,7 @@ import AsyncSelect from 'react-select/async';
 import { StylesConfig } from 'react-select';
 import { ContractType } from "../types";
 import Tooltip from '@mui/material/Tooltip';
+import sleep from "../../../utils/sleep";
 
 interface Props {
     obj: ContractType;
@@ -20,7 +21,7 @@ const SearchSelectBuiltIn: React.FC<Props> = ({
         if (!input) {
             return Promise.resolve({ options: [] });
         }
-        const json = await getSearchBuiltIn(input);
+        const json: any = await sleep(getSearchBuiltIn, input);
         const formatted = json.map((l: string)=> ({
             value: l,
             label: l

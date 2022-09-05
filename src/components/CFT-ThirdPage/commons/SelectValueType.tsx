@@ -1,35 +1,29 @@
 import React, { useState } from "react";
-import { getSearchForOther, updateContract } from "../Contract/ContractService";
-import AsyncSelect from 'react-select/async';
-import { StylesConfig } from 'react-select';
-import { ContractType } from "../types";
-import sleep from "../../../utils/sleep";
+import { updateCFT } from "../CFTsService";
+import Select, { StylesConfig } from 'react-select';
+import { CFTType, Filter } from "../types";
 
 interface Props {
-  obj: ContractType;
+  obj: CFTType;
   valueField: string;
+  miniObj: Filter;
 }
-
-const SelectKeynote: React.FC<Props> = ({
+const SelectValueType: React.FC<Props> = ({
     valueField,
-    obj
+    obj,
+    miniObj
 }) => {
     const [valueSelect, setValueSelect] = useState({value: valueField, label: valueField});
 
-    const getModelsAPI = async (input: string) => {
-        if (!input) {
-            return Promise.resolve({ options: [] });
-        }
-        const json: any = await sleep(getSearchForOther, input, obj.ReportType, obj.BuiltInCategory);
-        const formatted = json.map((l: string)=> ({
-            value: l,
-            label: l
-        }))
-        return formatted;
-    }
+    const options = [
+        {value: "String", label: "String"},
+        {value: "Integer", label: "Integer"},
+        {value: "Double", label: "Double"},
+        {value: "Null", label: "Null"},
+    ];
 
     const colourStyles: StylesConfig<any> = {
-        control: (styles) => ({ ...styles, 
+        control: (styles, {isDisabled}) => ({ ...styles, 
             backgroundColor: 'white', 
             fontSize: 14, 
             borderColor: '#E7EAEE',
@@ -39,6 +33,9 @@ const SelectKeynote: React.FC<Props> = ({
                 borderColor: '#047857',
                 transition: 'all 0.3s',
                 color: '#047857'
+            },
+            '& div': {
+              color: isDisabled ? 'rgb(51, 51, 51)' : 'rgb(51, 51, 51)',
             },
             ':active': {
                 borderColor: 'rgba(100, 116, 139, 0.81)',
@@ -70,21 +67,22 @@ const SelectKeynote: React.FC<Props> = ({
 
     const onChangeSelectedOption = (e: any) => {
         setValueSelect(e);
-        obj.KeynoteField = e.label;
-        updateContract(JSON.stringify(obj));
+        miniObj.ValueType = e.label;
+        updateCFT(JSON.stringify(obj));
     };
 
     return (
-        <div className="select">
-            <AsyncSelect 
-            loadOptions={getModelsAPI} 
-            styles={colourStyles} 
-            components={{ IndicatorSeparator:() => null }}
-            value={valueSelect}
-            onChange={onChangeSelectedOption}
-            />
-        </div>
+      <div className="select">
+          <Select 
+          options={options} 
+          styles={colourStyles} 
+          components={{ IndicatorSeparator:() => null, DropdownIndicator:() => null }}
+          value={valueSelect}
+          onChange={onChangeSelectedOption}
+          isDisabled={true}
+          />
+      </div>
     );
 };
 
-export default SelectKeynote;
+export default SelectValueType;

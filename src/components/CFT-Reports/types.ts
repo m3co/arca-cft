@@ -16,4 +16,5 @@ export interface ReportType {
     ReportType: string;
     Filters: Filter[];
     Fields: string[];
+    Processed: boolean;
 }

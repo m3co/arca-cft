@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { updateReport } from "../Report/ReportService";
-import { ReportType, Filter } from "../types";
+import { updateCFT } from "../CFTsService";
+import { CFTType, Filter } from "../types";
 
 interface Props {
-    obj: ReportType;
+    obj: CFTType;
     miniObj: Filter;
 }
 
@@ -12,7 +12,7 @@ const InputCommand: React.FC<Props> = ({
     miniObj
 }) => {
     const [valueCommand, setValueCommand] = useState(miniObj.Command);
-
+    
     return (
         <div className="input-box">
             <input type="text" 
@@ -25,10 +25,9 @@ const InputCommand: React.FC<Props> = ({
             onKeyPress={event => {
                 if (event.key === 'Enter') {
                     miniObj.Command = valueCommand;
-                    updateReport(JSON.stringify(obj));
+                    updateCFT(JSON.stringify(obj));
                 }
             }}
-            disabled={obj.Processed}
             />
         </div>
     );

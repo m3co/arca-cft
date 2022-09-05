@@ -30,5 +30,5 @@ export const updateReport = (body: Body | string) => (
 );
 
 export const addDefinition = (body: Body | string) => (
-    requestFetch({url: `api/v1/reports/add/cft-definitions`, method: 'POST', body })
+    requestFetch({url: `api/v1/reports/add/cft-definition`, method: 'POST', body })
 );

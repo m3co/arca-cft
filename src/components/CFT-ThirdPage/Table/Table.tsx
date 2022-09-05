@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import '../../../App.css';
-import Contract from '../Contract/Contract';
-import { mainSearch } from './TableService';
-import { ContractType } from '../types';
+import CFT from '../CFT/CFT';
+import { mainSearch } from '../CFTsService';
+import { CFTType } from '../types';
 
 interface Props {
-    getContracts: () => void;
-    setAllContracts: Function;
-    allContracts: {contracts: ContractType[] | null, isLoad: boolean};
-    isActiveFormDel: ContractType | null;
+    getCFTs: () => void;
+    setAllCFTs: Function;
+    allCFTs: {CFTs: CFTType[] | null, isLoad: boolean};
+    isActiveFormDel: CFTType | null;
     setActiveFormDel: Function;
-    isActiveFormAddFilter: ContractType | null;
+    isActiveFormAddFilter: CFTType | null;
     setActiveFormAddFilter: Function;
-    isActiveFormDelFilter: ContractType | null;
+    isActiveFormDelFilter: CFTType | null;
     setActiveFormDelFilter: Function;
 }
 
 const Table: React.FC<Props> = ({
-    getContracts,
-    setAllContracts,
-    allContracts,
+    getCFTs,
+    setAllCFTs,
+    allCFTs,
     isActiveFormDel,
     setActiveFormDel,
     isActiveFormAddFilter,
@@ -36,13 +36,13 @@ const Table: React.FC<Props> = ({
     const click = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         mainSearch(value)
-        .then(res => setAllContracts({ contracts: res, isLoad: true }))
-        .catch(() => setAllContracts({ contracts: null, isLoad: true }));
+        .then(res => setAllCFTs({ CFTs: res, isLoad: true }))
+        .catch(() => setAllCFTs({ allCFTs: null, isLoad: true }));
     }
 
     useEffect(() => {
         if(value === '') {
-            getContracts();
+            getCFTs();
         }
     }, [value]);
 
@@ -66,18 +66,18 @@ const Table: React.FC<Props> = ({
                 </div>
             </div>
             <div className="table">
-                <div className="table__wrp">
+                {/*<div className="table__wrp">
                     <div className="table__header">
-                        <div className="table__part" data-name="Contract">
+                        <div className="table__part" data-name="Contract" style={{paddingRight: 40}}>
                             <div className="name">Contract Type</div>
                         </div>
-                        <div className="table__part" data-name="Report">
+                        <div className="table__part" data-name="Report" style={{paddingRight: 30}}>
                             <div className="name">Report Type</div>
                         </div>
-                        <div className="table__part" data-name="BuiltIn">
+                        <div className="table__part" data-name="BuiltIn" style={{paddingRight: 0}}>
                             <div className="name">BuiltIn Category</div>
                         </div>
-                        <div className="table__part" data-name="Keynote">
+                        <div className="table__part" data-name="Keynote" style={{paddingLeft: 40}}>
                             <div className="name">Keynote Field</div>
                         </div>
                         <div className="table__part" data-name="Constraint">
@@ -88,15 +88,16 @@ const Table: React.FC<Props> = ({
                         </div>
                         <div className="table__part-end" data-name="func"></div>
                     </div>
-                </div>
-                {allContracts.contracts?.map((obj:ContractType) =>
-                    <Contract reportType={obj.ReportType} key={obj.ID} contractType={obj.ContractType}
+                </div>*/}
+                {allCFTs.CFTs?.map((obj:CFTType) =>
+                    <CFT reportType={obj.ReportType} key={obj.ID} contractType={obj.ContractType}
                     BuiltInCategory={obj.BuiltInCategory} ConstraintField={obj.ConstraintField}
                     QuantityField={obj.QuantityField} KeynoteField={obj.KeynoteField} obj={obj}
                     setActiveFormDel={setActiveFormDel} isActiveFormDel={isActiveFormDel}
-                    getContracts={getContracts} setActiveFormAddFilter={setActiveFormAddFilter}
+                    getCFTs={getCFTs} setActiveFormAddFilter={setActiveFormAddFilter}
                     isActiveFormAddFilter={isActiveFormAddFilter} isActiveFormDelFilter={isActiveFormDelFilter}
-                    setActiveFormDelFilter={setActiveFormDelFilter}
+                    setActiveFormDelFilter={setActiveFormDelFilter} PhaseField={obj.Phase} FamilyField={obj.Family}
+                    TypeField={obj.Type} KeyField={obj.Key}
                     />
                 )}
             </div>

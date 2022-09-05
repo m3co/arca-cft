@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { getSearchForOther, updateContract } from "../Contract/ContractService";
+import { getSearchForOther, updateCFT } from "../CFTsService";
 import AsyncSelect from 'react-select/async';
 import { StylesConfig } from 'react-select';
-import { ContractType } from "../types";
-import sleep from "../../../utils/sleep";
+import { CFTType } from "../types";
 
 interface Props {
-  obj: ContractType;
+  obj: CFTType;
   valueField: string;
 }
 
@@ -20,7 +19,7 @@ const SelectKeynote: React.FC<Props> = ({
         if (!input) {
             return Promise.resolve({ options: [] });
         }
-        const json: any = await sleep(getSearchForOther, input, obj.ReportType, obj.BuiltInCategory);
+        const json = await getSearchForOther(input, obj.ReportType, obj.BuiltInCategory);
         const formatted = json.map((l: string)=> ({
             value: l,
             label: l
@@ -29,7 +28,7 @@ const SelectKeynote: React.FC<Props> = ({
     }
 
     const colourStyles: StylesConfig<any> = {
-        control: (styles) => ({ ...styles, 
+        control: (styles, {isDisabled}) => ({ ...styles, 
             backgroundColor: 'white', 
             fontSize: 14, 
             borderColor: '#E7EAEE',
@@ -39,6 +38,9 @@ const SelectKeynote: React.FC<Props> = ({
                 borderColor: '#047857',
                 transition: 'all 0.3s',
                 color: '#047857'
+            },
+            '& div': {
+              color: isDisabled ? 'rgb(51, 51, 51)' : 'rgb(51, 51, 51)',
             },
             ':active': {
                 borderColor: 'rgba(100, 116, 139, 0.81)',
@@ -71,7 +73,7 @@ const SelectKeynote: React.FC<Props> = ({
     const onChangeSelectedOption = (e: any) => {
         setValueSelect(e);
         obj.KeynoteField = e.label;
-        updateContract(JSON.stringify(obj));
+        updateCFT(JSON.stringify(obj));
     };
 
     return (
@@ -79,9 +81,10 @@ const SelectKeynote: React.FC<Props> = ({
             <AsyncSelect 
             loadOptions={getModelsAPI} 
             styles={colourStyles} 
-            components={{ IndicatorSeparator:() => null }}
+            components={{ IndicatorSeparator:() => null, DropdownIndicator:() => null }}
             value={valueSelect}
             onChange={onChangeSelectedOption}
+            isDisabled={true}
             />
         </div>
     );

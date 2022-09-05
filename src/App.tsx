@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Definitions from './components/CFT-Definitions/Definitions';
 import Reports from './components/CFT-Reports/Reports';
-import ThirdPage from './components/CFT-ThirdPage/ThirdPage';
+import CFTs from './components/CFT-ThirdPage/CFTs';
 import Logo from './images/logo.svg';
 
 const App = () => {
@@ -55,7 +55,7 @@ const App = () => {
       </div>
       {activeRoute === 'CFT-Definitions' ? <Definitions /> : null}
       {activeRoute === 'Reports' ? <Reports /> : null}
-      {activeRoute === 'CFTs' ? <ThirdPage /> : null}
+      {activeRoute === 'CFTs' ? <CFTs /> : null}
     </div>
   );
 }

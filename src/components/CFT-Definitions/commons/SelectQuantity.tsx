@@ -3,6 +3,7 @@ import { getSearchForOther, updateContract } from "../Contract/ContractService";
 import AsyncSelect from 'react-select/async';
 import { StylesConfig } from 'react-select';
 import { ContractType } from "../types";
+import sleep from "../../../utils/sleep";
 
 interface Props {
   obj: ContractType;
@@ -18,7 +19,7 @@ const SelectQuantity: React.FC<Props> = ({
         if (!input) {
             return Promise.resolve({ options: [] });
         }
-        const json = await getSearchForOther(input, obj.ReportType, obj.BuiltInCategory);
+        const json: any = await sleep(getSearchForOther, input, obj.ReportType, obj.BuiltInCategory);
         const formatted = json.map((l: string)=> ({
             value: l,
             label: l
