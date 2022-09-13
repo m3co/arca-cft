@@ -22,7 +22,6 @@ const App = () => {
     if(activeRoute === 'CFTs') {
       window.history.replaceState(null, '', urlCFTs);
     }
-    
   }, [activeRoute]);
 
   return (
@@ -32,20 +31,21 @@ const App = () => {
             <a href="/" className="header__logo">
                 <img src={Logo} alt='logo'/>
             </a>
+            <a href="/Arca.zip">Download Plugin</a>
         </div>
         <div style={{display: 'flex', justifyContent: 'space-between', width: 450, alignItems: 'center', margin: '0 auto'}}>
-          <div 
-          className={activeRoute === 'CFT-Definitions' ? 'btnRouteActive' : 'btnRoute'} 
+          <div
+          className={activeRoute === 'CFT-Definitions' ? 'btnRouteActive' : 'btnRoute'}
           onClick={() => setActiveRoute('CFT-Definitions')}>
             <span>Definitons</span>
           </div>
-          <div 
-          className={activeRoute === 'Reports' ? 'btnRouteActive' : 'btnRoute'} 
+          <div
+          className={activeRoute === 'Reports' ? 'btnRouteActive' : 'btnRoute'}
           onClick={() => setActiveRoute('Reports')}
           >
             <span>Reports</span>
           </div>
-          <div 
+          <div
           className={activeRoute === 'CFTs' ? 'btnRouteActive' : 'btnRoute'}
           onClick={() => setActiveRoute('CFTs')}
           >
